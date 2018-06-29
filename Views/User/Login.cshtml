@@ -45,12 +45,21 @@
             </div>
         </form>
         @{
-            string MSG = ViewBag.LoginStatus;
-            if (MSG != null)
-            {
-                <div class="alert alert-danger">
-                    @ViewBag.LoginStatus
-                </div>
+            string flag = ViewBag.LoginStatus;
+            if(flag!=null)
+            { 
+                if (flag=="true")
+                {
+                    <div class="alert alert-success">
+                        @ViewBag.LoginMSG
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.LoginMSG
+                    </div>
+                }
             }
         }
     </div>

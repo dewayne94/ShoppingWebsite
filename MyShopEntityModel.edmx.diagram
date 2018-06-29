@@ -14,6 +14,12 @@
         <AssociationConnector Association="MyShopModel.FK__OrderDeta__Order__2B3F6F97" ManuallyRouted="false" />
         <AssociationConnector Association="MyShopModel.FK__OrderDeta__produ__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="MyShopModel.FK__Orders__UserID__2D27B809" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyShopModel.Cart" Width="1.5" PointX="8.75" PointY="4.125" />
+        <EntityTypeShape EntityType="MyShopModel.Wishlist" Width="1.5" PointX="5.75" PointY="5.125" />
+        <AssociationConnector Association="MyShopModel.FK__Cart__product_id__1ED998B2" />
+        <AssociationConnector Association="MyShopModel.FK__Cart__user_id__1DE57479" />
+        <AssociationConnector Association="MyShopModel.FK__Wishlist__produc__1920BF5C" />
+        <AssociationConnector Association="MyShopModel.FK__Wishlist__user_i__182C9B23" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
