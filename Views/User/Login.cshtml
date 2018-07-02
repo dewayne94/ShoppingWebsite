@@ -19,7 +19,7 @@
         }
 </style>
 <div class="row">
-    <div class="col-lg-3 offset-lg-5 col-md-8 offset-md-2 col-sm-8 offset-sm-2 border">
+    <div class="col-lg-3 offset-lg-5 col-md-8 offset-md-2 col-sm-8 offset-sm-2 border px-4">
         <h2 class="text-center">Login</h2>
         <form action="/User/Login" method="post" class="mb-3" id="form">
             <div class="form-group">
@@ -41,7 +41,7 @@
             </div>
             <div style="display:flex;flex-direction:row;justify-content:space-between">
                 <button type="button" class="btn btn-danger" id="btn">Login <img id="load" src="~/Images/load.png"> </button>
-                <button type="button" class="btn btn-primary" id="btnRegiser"><a href="/User/Account">Register</a><img id="load" src="~/Images/load.png"></button>
+                <button type="button" class="btn btn-primary" id="btnRegiser"><a href="/User/Register">Register</a><img id="load" src="~/Images/load.png"></button>
             </div>
         </form>
         @{
@@ -81,7 +81,7 @@
     $("#btnRegister").click(function () {
         alert("Call");
         $.ajax({
-            url:"/User/Account"
+            url:"/User/Register"
         });
     });
 </script>

@@ -12,6 +12,22 @@
     <script src="~/Scripts/jquery-3.0.0.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <title>_MyShopLayout</title>
+    <style>
+        .salert{
+            font-size:22px;
+            font-style:italic;
+            color:white;
+            background-color:green;
+
+        }
+        .salert{
+            font-size:22px;
+            font-style:italic;
+            color:white;
+            background-color:red;
+
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-expand-lg navbar-dark bg-dark px-5 py-1">
@@ -39,11 +55,11 @@
                         @{
                             if(MyShop.Security.SessionManager.User!=null)
                             {
-                                <a href="#" class="nav-link"><i class="icon-user"></i> @MyShop.Security.SessionManager.User.login </a>
+                                <a href="/User/Account" class="nav-link"><i class="icon-user"></i> @MyShop.Security.SessionManager.User.login </a>
                             }
                             else
                             {
-                                <a href="#" class="nav-link"><i class="icon-user"></i> Account</a>
+                                <a href="/User/Account" class="nav-link"><i class="icon-user"></i> Account</a>
                             } 
                         }
                         
@@ -65,8 +81,21 @@
             </div>
     </div>
     <div class="container-fluid">
-
-        @RenderBody()
+        <div class="row my-3">
+            <div class="col-lg-3 col-md-3">
+                <h4 class="text-center">Categories</h4>
+                <div class="list-group">
+                    @{ 
+                        var list = new MyShopEntities().Categories.ToList();
+                    }
+                    @for (int i = 0; i < list.Count; i++)
+                    {
+                        <a href="/Product/Category?name=@list[i].name" class="list-group-item list-group-item-action">@list[i].name</a>
+                    }
+                </div>
+            </div>
+            @RenderBody()
+        </div>
     </div>
 </body>
 </html>

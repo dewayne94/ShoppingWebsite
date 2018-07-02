@@ -1,9 +1,10 @@
 ﻿@model MyShop.Product
 
-<div class="col-lg-3">
+<div class="col-lg-3 my-2">
     <div class="card">
         <a href="#"><img class="card-img-top" src="~/Images/2.jpg"></a>
         <div class="card-body">
+            <p><strong>Name: </strong>@Model.name</p>
             <p><strong>Price : </strong>@Model.price</p>
             <a href="#" class="btn btn-sm btn-light border">Details</a>
             <a href="#" class="btn btn-sm btn-success">Add to Cart</a>
