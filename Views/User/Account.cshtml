@@ -72,7 +72,8 @@
                     <label>Date OF Birth</label>
                     <input type="date" name="dob" class="form-control" id="dob" value="@Model.DOB" />
                 </div>
-                <div class="form-group">
+                <!-- 
+                    <div class="form-group">
                     <label>Password</label>
                     <input type="password" name="pass" class="form-control" id="contact" />
                 </div>
@@ -80,14 +81,15 @@
                     <label>Confirm Password</label>
                     <input type="password" name="cpass" class="form-control" id="contact" />
                 </div>
+                    -->
                 <div>
-                    <button type="button" class="btn btn-primary btn-block" id="btn">Register<img id="load" src="~/Images/load.png"> </button>
+                    <button type="button" class="btn btn-primary btn-block" id="btn">Update<img id="load" src="~/Images/load.png"> </button>
                     <div class="text-center">
                         <span style="color:green;font-size:20px">
-                            Already Member ?
+                            OR 
                         </span>
                     </div>
-                    <button type="button" class="btn btn-success btn-block" id="btnRegiser"><a href="/User/Account">Login</a><img id="load" src="~/Images/load.png"></button>
+                    <button type="button" class="btn btn-success btn-block" id="btnRegiser"><a href="/User/Account">Change Password</a><img id="load" src="~/Images/load.png"></button>
                 </div>
             </form>
         }

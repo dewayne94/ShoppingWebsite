@@ -1,8 +1,78 @@
-﻿
+﻿@model List<MyShop.Product>
 @{
     ViewBag.Title = "Wishlist";
     Layout = "~/Views/Shared/_MyShopLayout.cshtml";
 }
 
-<h2>Wishlist</h2>
+@{
+    string add_product_to_wishlist = (string)TempData["add_product_to_wishlist"];
+    string add_product_to_cart_from_wishlist = (string)TempData["add_product_to_cart_from_wishlist"];
+    string remove_product = (string)TempData["remove_wishlist_product"];
+}
+<div class="col-lg-8 col-md-8 align-items-center">
+    <div style="text-align:center">
+        <h2>Wishlist</h2>
+        @if (Model == null)
+        {
+            <h1 class="text-danger">Please Sign In to View This Page :)</h1>
+        }
+        else
+        {
+            if (add_product_to_wishlist != null)
+            {
+                if (add_product_to_wishlist == "true")
+                {
+                    <div class="alert alert-success">
+                        Product Added To Wishlist Successfully
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        Error Adding Product To Wishlist
+                    </div>
+                }
+            }
+            if (add_product_to_cart_from_wishlist != null)
+            {
+                if (add_product_to_cart_from_wishlist == "true")
+                {
+                    <div class="alert alert-success">
+                        Product Added To Cart Successfully
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        Error Adding Product To Cart
+                    </div>
+                }
+            }
+            if (remove_product != null)
+            {
+                if (remove_product == "true")
+                {
+                    <div class="alert alert-success">
+                        Product Removed From Wishlist Successfully
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        Error Removing Product From Wishlist
+                    </div>
+                }
 
+            }
+            <div class="row my-1">
+                @{
+
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        @Html.Partial("wishlist_item", Model[i]);
+                }
+                }
+            </div>
+                    }
+    </div>
+</div>
