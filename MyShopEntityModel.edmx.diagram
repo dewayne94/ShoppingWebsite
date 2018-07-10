@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d9472e841a184931a10c134482e8c66a" Name="Diagram1">
-        <EntityTypeShape EntityType="MyShopModel.Cart" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyShopModel.Category" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyShopModel.OrderDetail" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyShopModel.Order" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyShopModel.Product" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyShopModel.User" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyShopModel.Wishlist" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+      <Diagram DiagramId="f326321f23de414391b35144ca582eb4" Name="Diagram1">
+        <EntityTypeShape EntityType="MyShopModel.Cart" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyShopModel.Category" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyShopModel.OrderDetail" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyShopModel.Order" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyShopModel.Product" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyShopModel.RecentlyBuyed" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyShopModel.User" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyShopModel.Wishlist" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="MyShopModel.FK__Cart__product_id__4AB81AF0" ManuallyRouted="false" />
         <AssociationConnector Association="MyShopModel.FK__Cart__user_id__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="MyShopModel.FK__Products__catego__2E1BDC42" ManuallyRouted="false" />
@@ -19,9 +20,8 @@
         <AssociationConnector Association="MyShopModel.FK__OrderDeta__produ__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="MyShopModel.FK__Orders__UserID__2D27B809" ManuallyRouted="false" />
         <AssociationConnector Association="MyShopModel.FK__Wishlist__produc__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="MyShopModel.FK_RecentlyBuyed_Products" ManuallyRouted="false" />
         <AssociationConnector Association="MyShopModel.FK__Wishlist__user_i__45F365D3" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MyShopModel.RecentlyBuyed" Width="1.5" PointX="0.75" PointY="0.75" />
-        <AssociationConnector Association="MyShopModel.FK_RecentlyBuyed_Products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
