@@ -39,9 +39,15 @@
                 <li class="nav-item">
                     <a href="/Home/Index" class="nav-link"><i class="icon-home"></i>Home</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Admin Panel</a>
-                </li>
+                @if (MyShop.Security.SessionManager.User != null)
+                {
+                    if (MyShop.Security.SessionManager.User.isAdmin == true)
+                    {
+                        <li class="nav-item">
+                            <a href="/User/AdminPanel" class="nav-link">Admin Panel</a>
+                        </li>
+                    }
+                }
             </ul>
             <ul class="navbar-nav ml-auto d-flex align-items-center">
                 <!--ml atuo -->

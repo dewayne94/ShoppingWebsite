@@ -7,17 +7,31 @@
 @{ 
     string add_product = (string)TempData["add_product"];
     string remove_product = (string)TempData["remove_cart_product"];
+    int total_item_in_cart = Helper.Get_total_items_in_cart();
 }
 <div class="col-lg-8 col-md-8 align-items-center">
     <div style="text-align:center">
         <h2>Cart</h2>
+        @if (total_item_in_cart==0)
+        {
+            <div class="text-center">
+                <h2 class="text-warning">Your Cart is Empty</h2>
+            </div>
+        }
         <div style="display:flex;flex-direction:row;justify-content:space-between">
             <h3>Total Price : <strong class="text-danger">@Helper.get_total_price_of_cart_items()</strong></h3>
-            <a href="#" class="btn btn-primary">CheckOut</a>
+            @if (MyShop.Security.SessionManager.User == null || total_item_in_cart == 0)
+            {
+                <a href="#" class="btn btn-primary disabled">CheckOut</a>
+            }
+            else
+            {
+                <a href="#" class="btn btn-primary">CheckOut</a>
+            }
         </div>
         @if (Model == null)
         {
-            <h1 class="text-danger">Please Sign In to View This Page :)</h1>
+            <h1 class="text-danger border">Please Sign In to View This Page :)</h1>
         }
         else
         {
