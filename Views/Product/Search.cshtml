@@ -1,0 +1,19 @@
+﻿@model List<Product>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_MyShopLayout.cshtml";
+}
+
+
+
+<div class="col-lg-8 col-md-8 align-items-center">
+    <h1 style="text-align:center">My Shop</h1>
+    <center><h2 class="text-primary">Search Results</h2></center>
+    <div class="row my-1">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            @Html.Partial("item", Model[i]);
+        }
+    </div>
+
+</div>

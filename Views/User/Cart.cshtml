@@ -1,0 +1,80 @@
+﻿@model List<MyShop.Product>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_MyShopLayout.cshtml";
+}
+
+@{ 
+    string add_product = (string)TempData["add_product"];
+    string remove_product = (string)TempData["remove_cart_product"];
+    int total_item_in_cart = Helper.Get_total_items_in_cart();
+}
+<div class="col-lg-8 col-md-8 align-items-center">
+    <div style="text-align:center">
+        <h2>Cart</h2>
+        @if (total_item_in_cart==0)
+        {
+            <div class="text-center">
+                <h2 class="text-warning">Your Cart is Empty</h2>
+            </div>
+        }
+        <div style="display:flex;flex-direction:row;justify-content:space-between">
+            <h3>Total Price : <strong class="text-danger">@Helper.get_total_price_of_cart_items()</strong></h3>
+            @if (MyShop.Security.SessionManager.User == null || total_item_in_cart == 0)
+            {
+                <a href="#" class="btn btn-primary disabled">CheckOut</a>
+            }
+            else
+            {
+                <a href="#" class="btn btn-primary">CheckOut</a>
+            }
+        </div>
+        @if (Model == null)
+        {
+            <h1 class="text-danger border">Please Sign In to View This Page :)</h1>
+        }
+        else
+        {
+            if (add_product != null)
+            {
+                if (add_product == "true")
+                {
+                    <div class="alert alert-success">
+                        Product Added To Cart Successfully
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        Error Adding Product To Cart
+                    </div>
+                }
+            }
+            if (remove_product != null)
+            {
+                if (remove_product == "true")
+                {
+                    <div class="alert alert-success">
+                        Product Removed From Cart Successfully
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        Error Removing Product From Cart
+                    </div>
+                }
+            }
+        <div class="row my-1">
+            @{
+
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    @Html.Partial("cart_item", Model[i]);
+                }
+            }
+        </div>
+       }
+    </div>
+</div>
+
