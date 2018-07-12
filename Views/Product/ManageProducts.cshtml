@@ -4,24 +4,82 @@
     Layout = "~/Views/Shared/_MyPublicLayout.cshtml";
 }
 
+@{
+    string updateProduct = (string)TempData["UpdateProduct"];
+    string DeleteProduct = (string)TempData["DeleteProduct"];
+    string AddProduct = (string)TempData["AddProduct"];
+}
+
+
 <h2>ManageProducts</h2>
 
 <div class="col-lg-12">
+    @{
+        if (updateProduct != null)
+        {
+            if (updateProduct == "true")
+            {
+                <div class="alert alert-success">
+                    Product Updated Successfully
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    Error Updating the Product
+                </div>
+            }
+        }
+
+        if (DeleteProduct != null)
+        {
+            if (DeleteProduct == "true")
+            {
+                <div class="alert alert-success">
+                    Product Deleted Successfully
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    Error Deleting the Product
+                </div>
+            }
+        }
+        if(AddProduct!=null)
+        {
+            if(AddProduct=="true")
+            {
+                <div class="alert alert-success">
+                    Product Added Successfully
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    Error Adding the Product
+                </div>
+            }
+        }
+    }
     <div class="col-lg-4 offset-lg-4">
         <form action="/" method="post">
             <label>
                 Select Products By Category
             </label>
-            <select class=form-control>
-                <option value="0">--Select--</option>
-                @foreach (var item in Model.categories)
-                {
-                    <option value="@item.ID">@item.name</option>
-                }
-            </select>
-            <input type="submit" class="btn btn-warning" value="Submit"/>
+            <div style="display:flex;flex-direction:row">
+                <select class=form-control>
+                    <option value="0">--Select--</option>
+                    @foreach (var item in Model.categories)
+                    {
+                        <option value="@item.ID">@item.name</option>
+                    }
+                </select>
+                <input type="submit" class="btn btn-warning" value="Submit" />
+            </div>
         </form>
     </div>
+    <a href="/Product/AddProduct" class="btn btn-dark">Add Product</a>
     <table class="table table-bordered table-hover">
         <tr>
             <th>
@@ -62,7 +120,7 @@
                        @item.description
                     </td>
                     <td class="d-none d-sm-table-cell d-md-table-cell">
-                        @item.PictureName
+                        <img src="~/Images/@item.PictureName" style="width:100px;height:100px"/>
                     </td>
                     <td class="d-none d-sm-table-cell d-md-table-cell">
                          @Helper.GetCategoryName((int)@item.categoryID)
@@ -71,10 +129,10 @@
                         @item.price
                     </td>
                     <td>
-                        <button class="btn btn-primary">Edit <i class="icon-edit"></i></button>
+                        <a class="btn btn-primary" href="/Product/EditProduct?id=@item.productID">Edit <i class="icon-edit"></i></a>
                     </td>
                     <td>
-                        <button class="btn btn-danger">Delete <i class="icon-remove"></i></button>
+                        <a class="btn btn-danger" href="/Product/Delete?pid=@item.productID">Delete <i class="icon-remove"></i></a>
                     </td>
                 </tr>
             }

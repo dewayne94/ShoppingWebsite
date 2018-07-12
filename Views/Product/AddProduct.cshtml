@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_MyPublicLayout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-8 offset-sm-2 border px-4">
+
+        <h2 class="text-center">Add Product</h2>
+        <form action="/Product/Add" method="post" class="mb-3" id="form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea type="text" name="desc" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Image:</label><br />
+                <input type="file" name="newImg" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Select Category</label>
+                <select name="cat">
+                    @foreach (var item in Helper.GetAllCategories())
+                    {
+                            <option value="@item.ID">@item.name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="text" name="price" class="form-control" value="" />
+            </div>
+
+
+            <div>
+                <button type="submit" class="btn btn-primary btn-block" id="btn">Add Product </button>
+            </div>
+        </form>
+    </div>
+</div>
