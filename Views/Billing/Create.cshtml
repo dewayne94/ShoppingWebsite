@@ -1,0 +1,189 @@
+﻿
+<style>
+    .my-bg{
+        background-color:#993333;
+    }
+      #signature {
+        height: 50px;
+        border: 1px solid black;
+    }
+        input[type="checkbox"] {
+        width: 20px; /*Desired width*/
+        height: 20px; /*Desired height*/
+    }
+</style>
+@{
+
+    ViewBag.Title = "Billing";
+    ViewBag.FormName = "CONSULT TO BILLING RECORED";
+    ViewBag.bg = "my-bg";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if(TempData["saveMessage"]!=null)
+{
+    <div class="alert alert-success">
+        @TempData["saveMessage"]
+    </div>
+}
+
+<form action="/Billing/Save" method="post" class="mt-2 mb-5" id="form">
+    <div class="row">
+        <div class="col-lg-4">
+            <input type="text" name="patient_name" class="form-control" placeholder="Patient Name" id="pname" />
+        </div>
+        <div class="col-lg-4">
+            <input type="text" name="patient_id" class="form-control" placeholder="Patient ID" id="pid" />
+        </div>
+        <div class="col-lg-4">
+            <input type="date" name="date" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <label><b>CONSULTANT</b>&nbsp;initials for receipt:</label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" name="consult" class="form-control" placeholder="CONSULTANT initials fro receipt" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <label><b>RETENTION </b>&nbsp;initials for receipt:</label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" name="retention" class="form-control" placeholder="RETENTION initials fro receipt" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <label>CSR billing:</label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" name="csr" class="form-control" placeholder="CSR Billing" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <label><b>CONSULT APPOINTMENT ID:</b></label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" name="appointment" class="form-control" placeholder="CONSULT APPOINTMENT ID" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <label><u>Procedures Solid</u></label>
+            <input type="text" name="ps1" class="form-control" placeholder="1" />
+            <input type="text" name="ps2" class="form-control" placeholder="2" />
+            <input type="text" name="ps3" class="form-control" placeholder="3" />
+        </div>
+        <div class="col-sm-4">
+            <label><u>Time Required</u></label>
+            <input type="text" name="tr1" class="form-control" placeholder="1" />
+            <input type="text" name="tr2" class="form-control" placeholder="2" />
+            <input type="text" name="tr3" class="form-control" placeholder="3" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-3">
+            <label class="pb-2"><b>NUMBERING TIME REQUIRED</b></label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="ntr" />
+                <label class="form-check-label" for="cb6">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="ntr" />
+                <label class="form-check-label" for="cb7">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <label class="pb-2"><b>PRE-TX PHOTOS</b></label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="pre_photos" />
+                <label class="form-check-label" for="cb6">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="pre_photos" />
+                <label class="form-check-label" for="cb7">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <label><u>Retail Products Sold:</u></label>
+            <input type="text" name="retail1" class="form-control" placeholder="1" />
+            <input type="text" name="retail2" class="form-control" placeholder="2" />
+            <input type="text" name="retail3" class="form-control" placeholder="3" />
+            <input type="text" name="retail4" class="form-control" placeholder="4" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <label><b>COUPON to be applied:</b></label>
+            <input type="text" name="coupon" class="form-control" placeholder="CPUPON to be applied" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <label><b>QUOTED PRICE:</b></label>
+            <input type="text" name="price" class="form-control" placeholder="Quoted Price" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <label>Additional Comments</label>
+            <textarea class="form-control" name="comments" rows="5" placeholder="Comments"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-8 offset-sm-4 col-md-4  offset-lg-6">
+            <label>Signature</label>
+            <div id="signature" class="form-control">
+                <canvas id="signature-pad1" class="signature-pad"></canvas>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-block my-bg text-white" id="save">Save</button>
+        </div>
+    </div>
+
+    <textarea id='output1' name="provider_signature" class="text-hide"></textarea><br />
+</form>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/signature_pad.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        var signaturePad1 = new SignaturePad(document.getElementById('signature-pad1'));
+        $("#save").click(function () {
+            var pname = $("#pname").val();
+            var pid = $("#pid").val();
+
+            if (pname == "" || pid == "")
+            {
+                alert("Please fill both Patient Name and Patient ID");
+                return false;
+            }
+            var data1 = signaturePad1.toDataURL('image/png');
+            $('#output1').val(data1);
+            $("#form").submit();
+        });
+    });
+</script>

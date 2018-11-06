@@ -1,0 +1,923 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    ViewBag.FormName = "Consult Record for Laser Hair Removal";
+    ViewBag.bg = "bg-info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    input[type="checkbox"] {
+        width: 20px; /*Desired width*/
+        height: 20px; /*Desired height*/
+    }
+
+    #signature {
+        height: 50px;
+        border: 1px solid black;
+    }
+
+    th {
+        text-align: center;
+    }
+
+    td {
+        text-align: center;
+    }
+
+        td:first-child {
+            text-align: left;
+        }
+        .img1{
+        background-image:url('../../Images/three_men.PNG');
+        background-size:100% auto;
+        width:100%;
+        height:550px;
+        background-repeat:no-repeat;
+    }
+        .img2{
+        background-image:url('../../Images/four_men.PNG');
+        background-size:100% auto;
+        width:100%;
+        height:480px;
+        background-repeat:no-repeat;
+    }
+</style>
+
+
+@if(TempData["saveMessage"]!=null)
+{
+    <div class="alert alert-success">
+        @TempData["saveMessage"]
+    </div>
+}
+
+
+
+<form action="/LaserHairRemoval/Save" method="post" class="mt-5" id="form">
+
+    <div class="row">
+        <div class="form-group col-lg-4">
+            <input type="text" name="client_name" placeholder="Client Name" class="form-control" id="pname" />
+        </div>
+        <div class="form-group col-lg-4">
+            <input type="text" name="client_id" placeholder="Client ID" class="form-control" id="pid" />
+        </div>
+        <div class="form-group col-lg-4">
+            <input type="date" name="date" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-1">
+            <label>Females:</label>
+        </div>
+        <div class="col-lg-3">
+            <label class="checkbox-label">Hormone Imbalance</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="hormone_imbalance" />
+                <label class="form-check-label" for="cb1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="hormone_imbalance" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label class="checkbox-label">Regular Cycles</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="regular_cycle" />
+                <label class="form-check-label" for="cb1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="regular_cycle" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label class="checkbox-label">Pregnant</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="pregnant" />
+                <label class="form-check-label" for="cb1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="pregnant" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group">
+                <label class="checkbox-label">Area(s) to be treated:</label>
+                <input type="text" class="form-control" name="areas_to_be_treated" placeholder="Aread to be treated" />
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <br />
+                <label>Suntan</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="suntan" />
+                    <label class="form-check-label" for="cb1">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="suntan" />
+                    <label class="form-check-label" for="cb2">No</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label>Hair Removal used in last 6 weeks</label>
+            <input type="text" class="form-control" name="hair_removal_in_six_weeks" placeholder="Hair Removal used in last 6 weeks" />
+        </div>
+        <div class="col-lg-3">
+            <label>Hair Colour</label>
+            <input type="text" class="form-control" name="hair_color" placeholder="Hair Colour" />
+        </div>
+        <div class="col-lg-4">
+            <br />
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="fine" />
+                <label class="form-check-label" for="cb1">Fine</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="course" />
+                <label class="form-check-label" for="cb2">Course</label>
+            </div>
+        </div>
+    </div>
+
+    <h3> SKIN TYPE (Fitxpartick) QUESTIONNAIRE</h3>
+
+    <table class="table table-bordered">
+        <thead class="bg-info text-white">
+            <tr>
+                <th>Score</th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-info text-white">Eye Color</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="0" name="eye_color" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Light blue, grey or green</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div><input class="form-check-input" type="checkbox" value="1" name="eye_color" /></div>
+                        <label class="form-check-label" for="cb2">Blue, grey or green</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="eye_color" />
+                        <label class="form-check-label" for="cb2">Blue</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="3" name="eye_color" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Dark Brown</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="eye_color" />
+                        <label class="form-check-label" for="cb2">Brown/Black</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-info text-white">Natural Hair Color?</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="0" name="natural_hair_color" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Sandy Red</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="natural_hair_color" />
+                        <label class="form-check-label" for="cb2">Blonde</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="2" name="natural_hair_color" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Chestnut brown, dark blonde</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="3" name="natural_hair_color" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Dark Brown</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="natural_hair_color" />
+                        <label class="form-check-label" for="cb2">Black</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-info text-white">Non-exposed Skin color?</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="skin_color" />
+                        <label class="form-check-label" for="cb2">Reddish</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="1" name="skin_color" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Very Pale</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="2" name="skin_color" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Pale with beige tint</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="3" name="skin_color" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Light brown</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="skin_color" />
+                        <label class="form-check-label" for="cb2">Dark brown</label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="bg-info text-white">Freckles on non-exposed skin?</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="frenkles_skin" />
+                        <label class="form-check-label" for="cb2">Many</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="frenkles_skin" />
+                        <label class="form-check-label" for="cb2">Several</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="frenkles_skin" />
+                        <label class="form-check-label" for="cb2">Few</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="3" name="frenkles_skin" />
+                        <label class="form-check-label" for="cb2">Incidental</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="frenkles_skin" />
+                        <label class="form-check-label" for="cb2">None</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-info text-white">Long sun exposure with no block?</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="0" name="long_sun_exposure" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Painful blisters, redness, peeling</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="1" name="long_sun_exposure" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Burn followed by peeling</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="2" name="long_sun_exposure" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Burn,something followed by peel</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="3" name="long_sun_exposure" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Rarely Burn</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="4" name="long_sun_exposure" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Never burn</label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="bg-info text-white">What degree tan?</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="0" name="degree_tan" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Hardly at all</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="1" name="degree_tan" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Light color tan</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="2" name="degree_tan" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Reasonable tan</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="3" name="degree_tan" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Tan very easily</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="degree_tan" />
+                        <label class="form-check-label" for="cb2">Dark brown tan</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-info text-white">Turn brown within<br />Several hours?</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="0" name="brown_in_several_hours" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Hardly Ever to no at all</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="brown_in_several_hours" />
+                        <label class="form-check-label" for="cb2">Seldom</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="brown_in_several_hours" />
+                        <label class="form-check-label" for="cb2">Sometimes</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="3" name="brown_in_several_hours" />
+                        <label class="form-check-label" for="cb2">Often</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="brown_in_several_hours" />
+                        <label class="form-check-label" for="cb2">Always</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-info text-white">Facial sun reaction with<br />no block?</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="0" name="facial_sun_reaction" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Very Sensitive</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="1" name="facial_sun_reaction" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Sensitive</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="2" name="" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Normal</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="3" name="facial_sun_reaction" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Very resistant</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="4" name="facial_sun_reaction" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Nver had a problem</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-info text-white">When was your last sun exposre?</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="0" name="body_last_exposed" />
+                        </div>
+                        <label class="form-check-label" for="cb2">More than 3 months ago</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="1" name="body_last_exposed" />
+                        </div>
+                        <label class="form-check-label" for="cb2">2-3 months ago</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="2" name="body_last_exposed" />
+                        </div>
+                        <label class="form-check-label" for="cb2">1-2 months ago</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="3" name="body_last_exposed" />
+                        </div>
+                        <label class="form-check-label" for="cb2">less than 1 month ago</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="4" name="body_last_exposed" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Less than 2 weeks ago</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-info text-white">Do you expose the<br />treatment area to the <br />sun?</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="treatment_area_exposed" />
+                        <label class="form-check-label" for="cb2">Never</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="1" name="treatment_area_exposed" />
+                        </div>
+                        <label class="form-check-label" for="cb2">Hardly ever</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="treatment_area_exposed" />
+                        <label class="form-check-label" for="cb2">Sometimes</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="3" name="treatment_area_exposed" />
+                        <label class="form-check-label" for="cb2">Often</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="treatment_area_exposed" />
+                        <label class="form-check-label" for="cb2">Always</label>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-lg-9 offset-lg-1">
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <input class="form-check-input" type="checkbox" value="0" name="scores" />
+                            </div>
+                            <label class="form-check-label" for="cb2">Score 01-07 Type I</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <input class="form-check-input" type="checkbox" value="1" name="scores" />
+                            </div>
+                            <label class="form-check-label" for="cb2">Score 08-16 Type II</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <input class="form-check-input" type="checkbox" value="2" name="scores" />
+                            </div>
+                            <label class="form-check-label" for="cb2">Score 17-25 Type III</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <input class="form-check-input" type="checkbox" value="3" name="scores" />
+                            </div>
+                            <label class="form-check-label" for="cb2">Score 26-30 Type IV</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <input class="form-check-input" type="checkbox" value="4" name="scores" />
+                            </div>
+                            <label class="form-check-label" for="cb2">Score 30+ Type V-VI</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <h2><u>TOPICS DISCUSSED WITH CLIENT:</u></h2>
+    <p>Number of treatments with sequencing: package of 6 with a minimum of 3 weeks between treatments</p>
+    <div class="row">
+        <div class="col-lg-3">
+            <label>Hair Cycles:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="hair_cycles" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="hair_cycles" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <label>Number of treatments with sequencing:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="number_of_treatments" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="number_of_treatments" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <label>Hair management bewteen treatments:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="hair_management" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="hair_management" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <label>Non-responder:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="non_responder" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="non_responder" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label>Risks and benefits:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="risks_and_benefits" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="risks_and_benefits" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label>Consent Reviewed:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="consent_review" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="consent_review" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label>Signed:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="signed" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="signed" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <label>Post Care Page Reviewed:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="post_care_reviewed" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="post_care_reviewed" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label>Given To Client:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="given_to_client" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="given_to_client" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label><b>Treatment Area(s)</b></label>
+            <label class="form-check-label" for="cb2">Assessed:</label>
+            <div class="form-check form-check-inline">
+
+                <input class="form-check-input" type="checkbox" value="1" name="assessed" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="assessed" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+            <label class="form-check-label" for="cb2">Outlined on diagram:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="outlined_on_diagram" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="outlined_on_diagram" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                <input type="text" name="price_per_tax" class="form-control" placeholder="price per tx" />
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                <input type="text" name="fivr_pkg" class="form-control" placeholder="for 5 pkg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label>Test Spot Completed: </label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="test_spot_completed" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="test_spot_completed" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <lable>Charted on diagram:</lable>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="charted_on_diagram" />
+                <label class="form-check-label" for="cb2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="0" name="charted_on_diagram" />
+                <label class="form-check-label" for="cb2">No</label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-9 offset-lg-1">
+            <table class="table table-bordered">
+                <tr>
+                    <th class="bg-info text-white">#</th>
+                    <th class="bg-info text-white">Client Specific Questions</th>
+                    <th class="bg-info text-white">Answers</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><textarea rows="3" class="form-control" name="client_question1"></textarea></td>
+                    <td><textarea rows="3" class="form-control" name="answer1"></textarea></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><textarea rows="3" class="form-control" name="client_question2"></textarea></td>
+                    <td><textarea rows="3" class="form-control" name="answer2"></textarea></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><textarea rows="3" class="form-control" name="client_question3"></textarea></td>
+                    <td><textarea rows="3" class="form-control" name="answer3"></textarea></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-9 offset-lg-1">
+            <label><b>NOTES/COMMENTS/CONCERNS</b></label>
+            <textarea rows="5" class="form-control" name="notes"></textarea>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-3 offset-lg-1">
+            <lable>List equipment to be used at each treatment</lable>
+        </div>
+        <div class="col-lg-1">
+            <input type="text" name="list_equipment1" class="form-control" placeholder="#1" />
+        </div>
+        <div class="col-lg-1">
+            <input type="text" name="list_equipment2" class="form-control" placeholder="#2" />
+        </div>
+        <div class="col-lg-1">
+            <input type="text" name="list_equipment3" class="form-control" placeholder="#3" />
+        </div>
+        <div class="col-lg-1">
+            <input type="text" name="list_equipment4" class="form-control" placeholder="#4" />
+        </div>
+        <div class="col-lg-1">
+            <input type="text" name="list_equipment5" class="form-control" placeholder="#5" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="img1 img-fluid">
+                <canvas id="img1"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-3 offset-md-1">
+            <div class="form-group">
+                <label><b><u>TEST SPOT AREA:</u></b></label>
+                <input type="text" class="form-control" name="test_spot_area" />
+            </div>
+            <div class="form-group">
+                <label><b><u>ENERGY LEVELS:</u></b></label>
+                <input type="text" class="form-control" name="energy_levels" />
+            </div>
+            <div class="form-group">
+                <label><b><u>NOTES:</u></b></label>
+                <textarea class="form-control" name="notes2" rows="8"></textarea>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="img2 img-fluid">
+                <canvas id="img2"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-lg-4 col-sm-8 offset-sm-4 col-md-4  offset-lg-6">
+            <label>Signature</label>
+            <div id="signature" class="form-control">
+                <canvas id="signature-pad1" class="signature-pad"></canvas>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-4 offset-md-4">
+        <button class="btn btn-block btn-info" id="save">save</button>
+    </div>
+
+    <textarea id='output1' name="provider_signature1" class="text-hide"></textarea><br />
+    <input type="hidden" id="patient_img1" name="picture1" />
+    <input type="hidden" id="patient_img2" name="picture2" />
+</form>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/signature_pad.js"></script>
+<script src="~/Scripts/atrament.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        var signaturePad1 = new SignaturePad(document.getElementById('signature-pad1'));
+        var sketcher1 = atrament('#img1');
+        var sketcher2 = atrament('#img2');
+        $("#save").click(function () {
+
+            var pname = $("#pname").val();
+            var pid = $("#pid").val();
+
+            if (pname == "" || pid == "") {
+                alert("Please fill both Patient Name and Patient ID");
+                return false;
+            }
+
+            if (sketcher1.dirty)
+                $("#patient_img1").val(sketcher1.toImage());
+            if (sketcher2.dirty)
+                $("#patient_img2").val(sketcher1.toImage());
+
+            var data1 = signaturePad1.toDataURL('image/png');
+            $('#output1').val(data1);
+            $("#form").submit();
+        });
+    });
+</script>
+
+

@@ -1,0 +1,283 @@
+﻿
+
+<style>
+    .my-bg {
+        background-color: #009933;
+    }
+</style>
+@{
+    ViewBag.Title = "create";
+    ViewBag.FormName = "General Notes";
+    ViewBag.bg = "my-bg";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+@if(TempData["saveMessage"]!=null)
+{
+    <div class="alert alert-success">
+        @TempData["saveMessage"]
+    </div>
+}
+<form action="/GeneralNotes/Save" method="post" id="form">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-1">
+            <div class="form-group">
+                <input type="text" name="client_name" placeholder="Name" class="form-control" id="pname" />
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" name="client_id" placeholder="Id" class="form-control" id="pid" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <table class="table table-bordered">
+                <thead class="my-bg text-white">
+                    <tr>
+                        <th>DATE</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="date" name="date1" placeholder="Date" class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" name="comments1" placeholder="comments" class="form-control"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date2" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments2" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date3" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments3" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date4" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments4" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date5" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments5" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date6" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments6" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date7" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments7" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date8" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments8" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date9" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments9" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date10" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments10" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date11" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments11" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date12" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments12" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date13" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments13" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date14" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments14" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date15" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments15" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date16" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments16" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date17" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments17" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date18" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments18" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date19" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments19" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date20" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments20" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date21" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments21" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date22" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments22" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date23" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments23" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date24" placeholder="Date" class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name="comments24" placeholder="comments" class="form-control" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+       
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-8 offset-sm-4 col-md-4  offset-lg-6">
+            <label>Signature</label>
+            <div id="signature" class="form-control">
+                <canvas id="signature-pad1" class="signature-pad"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 offset-lg-4">
+        <button class="btn btn-block my-bg text-white" id="save">Save</button>
+    </div>
+    <textarea id='output1' name="provider_signature" class="text-hide"></textarea><br />
+</form>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/signature_pad.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        var signaturePad1 = new SignaturePad(document.getElementById('signature-pad1'));
+        $("#save").click(function () {
+
+            var pname = $("#pname").val();
+            var pid = $("#pid").val();
+
+            if (pname == "" || pid == "") {
+                alert("Please fill both Patient Name and Patient ID");
+                return false;
+            }
+
+            var data1 = signaturePad1.toDataURL('image/png');
+            $('#output1').val(data1);
+            $("#form").submit();
+        });
+    });
+</script>

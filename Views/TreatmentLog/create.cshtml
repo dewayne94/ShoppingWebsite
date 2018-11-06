@@ -1,0 +1,123 @@
+﻿
+<style>
+    .my-bg{
+        background-color:#009933;
+    }
+</style>
+@{
+    ViewBag.Title = "create";
+    ViewBag.FormName = "Zerona, Foca Fat and Reduction Treatment Log";
+    ViewBag.bg = "my-bg";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <input type="text" name="client_name" placeholder="Client Name" class="form-control" id="pname" />
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <input type="text" name="client_id" placeholder="Client Id" class="form-control" id="pid" />
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="form-group">
+            <input type="text" name="region" placeholder="Region" class="form-control" />
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <thead class="my-bg text-white">
+                <tr>
+                    <th>Date</th>
+                    <th>Session<br />Number</th>
+                    <th>Observations/Zerona Notes</th>
+                    <th>US Pulses</th>
+                    <th colspan="6" class="text-center">VS Passes</th>
+                    <th colspan="2" class="text-center">Temp</th>
+                    <th class="text-center">Initials</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="text-center">RF</th>
+                    <th colspan="2" class="text-center">R</th>
+                    <th colspan="2" class="text-center">S</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>R</th>
+                    <th>L</th>
+                    <th>R</th>
+                    <th>L</th>
+                    <th>R</th>
+                    <th>L</th>
+                    <th>R</th>
+                    <th>L</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="date" name="date1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text"   name="session1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs1" class="form-control"/>
+                    </td>
+                    <td>
+                        <input type="text" name="us_pulses1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rfr1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rfl1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rr1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rl1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sr1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sl1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="templ1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tempr1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials1" class="form-control" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

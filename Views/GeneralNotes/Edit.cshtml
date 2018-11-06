@@ -1,0 +1,424 @@
+﻿@model PatientForms.GeneralNote
+
+<style>
+    .my-bg {
+        background-color: #009933;
+    }
+</style>
+@{
+    ViewBag.Title = "create";
+    ViewBag.FormName = "General Notes";
+    ViewBag.bg = "my-bg";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+@if(TempData["updateMessage"]!=null)
+{
+    <div class="alert alert-primary">
+        @TempData["updateMessage"]
+    </div>
+}
+
+<form action="/GeneralNotes/Update" method="post">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-1">
+            <div class="form-group">
+                <input type="text" name="client_name" placeholder="Name" class="form-control" value="@Model.client_name" />
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" name="client_id" placeholder="Id" class="form-control" value="@Model.client_id"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <table class="table table-bordered">
+                <thead class="my-bg text-white">
+                    <tr>
+                        <th>DATE</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @if (Model.date1 != null)
+                            {
+                                <input type="date" name="date1" placeholder="Date" value="@Model.date1.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date1" placeholder="Date"  class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments1" placeholder="comments" value="@Model.comments1" class="form-control"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date2 != null)
+                            {
+                                <input type="date" name="date2" placeholder="Date" value="@Model.date2.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date2" placeholder="Date"  class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments2" placeholder="comments" value="@Model.comments2" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date3 != null)
+                            {
+                                <input type="date" name="date3" placeholder="Date" value="@Model.date3.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date3" placeholder="Date"  class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments3" placeholder="comments" value="@Model.comments3" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date4 != null)
+                            {
+                                <input type="date" name="date4" placeholder="Date" value="@Model.date4.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date4" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments4" placeholder="comments" value="@Model.comments4" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date5 != null)
+                            {
+                                <input type="date" name="date5" placeholder="Date" value="@Model.date5.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date5" placeholder="Date"  class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments5" placeholder="comments" value="@Model.comments5" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date6 != null)
+                            {
+                                <input type="date" name="date6" placeholder="Date" value="@Model.date6.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date6" placeholder="Date"  class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments6" placeholder="comments" value="@Model.comments6" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date7 != null)
+                            {
+                                <input type="date" name="date7" placeholder="Date" value="@Model.date7.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date7" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments7" placeholder="comments" value="@Model.comments7" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date8 != null)
+                            {
+                                <input type="date" name="date8" placeholder="Date" value="@Model.date8.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date8" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments8" placeholder="comments" value="@Model.comments8" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date9 != null)
+                            {
+                                <input type="date" name="date9" placeholder="Date" value="@Model.date9.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date9" placeholder="Date"  class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments9" placeholder="comments" value="@Model.comments9" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date10 != null)
+                            {
+                                <input type="date" name="date10" placeholder="Date" value="@Model.date10.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date10" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments10" placeholder="comments" value="@Model.comments10" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date11 != null)
+                            {
+                                <input type="date" name="date11" placeholder="Date" value="@Model.date11.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date11" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments11" placeholder="comments" value="@Model.comments10" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date12 != null)
+                            {
+                                <input type="date" name="date12" placeholder="Date" value="@Model.date11.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date12" placeholder="Date"  class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments12" placeholder="comments" value="@Model.comments11" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date13 != null)
+                            {
+                                <input type="date" name="date13" placeholder="Date" value="@Model.date12.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date13" placeholder="Date"  class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments13" placeholder="comments" value="@Model.comments12" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date14 != null)
+                            {
+                                <input type="date" name="date14" placeholder="Date" value="@Model.date13.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date14" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments14" placeholder="comments" value="@Model.comments13" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date15 != null)
+                            {
+                                <input type="date" name="date15" placeholder="Date" value="@Model.date14.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date15" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments15" placeholder="comments" value="@Model.comments14" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date16 != null)
+                            {
+                                <input type="date" name="date16" placeholder="Date" value="@Model.date15.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date16" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments16" placeholder="comments" value="@Model.comments15" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date17 != null)
+                            {
+                                <input type="date" name="date17" placeholder="Date" value="@Model.date16.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date17" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments17" placeholder="comments" value="@Model.comments16" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date18 != null)
+                            {
+                                <input type="date" name="date18" placeholder="Date" value="@Model.date17.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date18" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments18" placeholder="comments" value="@Model.comments17" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date19 != null)
+                            {
+                                <input type="date" name="date19" placeholder="Date" value="@Model.date18.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date19" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments19" placeholder="comments" value="@Model.comments18" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date20 != null)
+                            {
+                                <input type="date" name="date20" placeholder="Date" value="@Model.date19.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date20" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments20" placeholder="comments" value="@Model.comments19" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date21 != null)
+                            {
+                                <input type="date" name="date21" placeholder="Date" value="@Model.date20.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date21" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments21" placeholder="comments" value="@Model.comments20" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date22 != null)
+                            {
+                                <input type="date" name="date22" placeholder="Date" value="@Model.date21.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date22" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments22" placeholder="comments" value="@Model.comments21" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date23 != null)
+                            {
+                                <input type="date" name="date23" placeholder="Date" value="@Model.date22.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date23" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments23" placeholder="comments" value="@Model.comments22" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.date24 != null)
+                            {
+                                <input type="date" name="date24" placeholder="Date" value="@Model.date23.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="date" name="date24" placeholder="Date" class="form-control" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments24" placeholder="comments" value="@Model.comments23" class="form-control" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-8 offset-sm-4 col-md-4  offset-lg-6">
+            <label>Signature</label>
+            <div id="signature" class="form-control">
+                <img src="@Model.provider_signature" />
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 offset-lg-4">
+        <button class="btn btn-block my-bg text-white">Edit</button>
+    </div>
+</form>

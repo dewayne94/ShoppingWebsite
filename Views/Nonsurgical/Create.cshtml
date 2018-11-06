@@ -1,0 +1,196 @@
+﻿
+<style>
+    .my-bg {
+        background-color: #633517;
+    }
+
+    .signature {
+        height: 50px;
+        border: 1px solid black;
+    }
+
+    input[type="checkbox"] {
+        width: 20px; /*Desired width*/
+        height: 20px; /*Desired height*/
+    }
+</style>
+@{
+
+    ViewBag.Title = "Billing";
+    ViewBag.FormName = "Non-Surgical Payment Policy";
+    ViewBag.bg = "my-bg";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["saveMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["saveMessage"]
+    </div>
+}
+
+<form>
+    <div class="row">
+        <h3>Booking Deposit and Refund Policy</h3>
+        <div class="col-sm-11 offset-1">
+            <p>
+                A deposit of 50% of the treatment program cost is required
+                to schedule any treatment program. Refunds will not be issued.
+                We will however, issue a credit on account or exchange the services
+                remaining from the package with any other service of equal value
+                (EXCLUDING: Injectables adn skin care products). If there is a balance
+                remaining from the exchange, the client is responsible for the additional
+                charges.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3>Full Payment Due</h3>
+        <div class="col-sm-11 offset-1">
+            <h4>
+                The remaining 50% of your treatment program costs must be paid 30 days from
+                the first payment date.
+            </h4>
+            <p>The payment dates will be:</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <label><u><b>Payment History</b></u></label>
+            <input type="text" name="amount_paid" placeholder="Amount Paid(50% of purchase)" class="form-control" />
+            <br />
+            <input type="text" name="balance_owing" placeholder="Balance Owing" class="form-control" />
+        </div>
+        <div class="col-sm-6">
+            <label><u><b>Payment Date</b></u></label>
+            <input type="date" name="pdate1" placeholder="Amount Paid(50% of purchase)" class="form-control" />
+            <br />
+            <input type="date" name="pdate2" placeholder="Balance Owing" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <p>
+            These payments will be charged to the credit card you have provided for the
+            purpose of billing these payments.
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="text" name="patient_name" placeholder="NAME of Patient" class="form-control" id="pname" />
+            <br />
+            <input type="text" name="credit_card_no" placeholder="Credit Card No#" class="form-control" />
+            <br />
+        </div>
+        <br />
+        <div class="col-sm-6">
+            <input type="text" name="patient_id" placeholder="Patient ID#" class="form-control" id="pid" />
+            <label><b>Expiry Date</b></label>
+            <input type="date" name="expiry_date" placeholder="Expiry Date" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <h3>Cancellation Policy and Late Arrical for Appointments</h3>
+        <div class="col-sm-11 offset-1">
+            <p>
+                Requires at least 48 hours notice for an appointment cancellation.
+                You will receive a courtesy confirmation call of your appointment
+                48 hours in advance at the phone number provided to us on file.
+                <br />
+                If you cancel your appointment with less than 48 business hours of notice,
+                a cancellation fee of $50 will be applied to your account.
+                <br />
+                Please try to arrive 15 minutes prior to your appointment to allow you to complete
+                the required information.
+                <br />
+                Although we will do our best to accommodate you, if you are late for your appointment
+                , you may be required to rebook for another day. If this is necessary, you will still be
+                charged for your original appointment time.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10 offset-1">
+            <label><b>Printed</b>&nbsp;name of Consultant</label>
+            <div class="form-control signature">
+                <canvas id="signature-pad1" class="signature-pad"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-11 offset-1">
+            <label>Date</label>
+            <input type="date" name="date1" class="form-control" />
+        </div>
+    </div>
+    <br />
+    <p>I agree to the terms as outlined and have been given a copy of this policy</p>
+
+    <div class="row">
+        <div class="col-sm-10 offset-1">
+            <label>Signature of Paitent</label>
+            <div class="form-control signature">
+                <canvas id="signature-pad2" class="signature-pad"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-11 offset-1">
+            <label>Date</label>
+            <input type="date" name="date2" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10 offset-1">
+            <label>Client Service Representative initials</label>
+            <div class="form-control signature">
+                <canvas id="signature-pad3" class="signature-pad"></canvas>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-sm-12">
+        <button class="btn btn-block my-bg text-white" id="save">Save</button>
+    </div>
+
+    <textarea id='output1' name="provider_signature1" class="text-hide"></textarea><br />
+    <textarea id='output2' name="provider_signature2" class="text-hide"></textarea><br />
+    <textarea id='output3' name="provider_signature3" class="text-hide"></textarea><br />
+</form>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/signature_pad.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        var signaturePad1 = new SignaturePad(document.getElementById('signature-pad1'));
+        var signaturePad1 = new SignaturePad(document.getElementById('signature-pad2'));
+        var signaturePad1 = new SignaturePad(document.getElementById('signature-pad3'));
+        $("#save").click(function () {
+
+            var pname = $("#pname").val();
+            var pid = $("#pid").val();
+
+            if (pname == "" || pid == "") {
+                alert("Please fill both Patient Name and Patient ID");
+                return false;
+            }
+
+            var data1 = signaturePad1.toDataURL('image/png');
+            var data2 = signaturePad2.toDataURL('image/png');
+            var data3 = signaturePad3.toDataURL('image/png');
+            $('#output1').val(data1);
+            $('#output2').val(data2);
+            $('#output3').val(data3);
+            $("#form").submit();
+        });
+    });
+</script>

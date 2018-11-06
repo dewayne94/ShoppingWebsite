@@ -1,0 +1,640 @@
+﻿
+<style>
+    input[type="checkbox"] {
+        width: 20px; /*Desired width*/
+        height: 20px; /*Desired height*/
+    }
+
+    .bg-grey {
+        background-color: #a6001a;
+    }
+
+    #signature {
+        height: 50px;
+        border: 1px solid black;
+    }
+</style>
+
+@{
+    ViewBag.bg = "bg-grey";
+    ViewBag.FormName = "BODY FX Treatment Log";
+    ViewBag.Title = "FotoFacial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+@if (TempData["saveMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["saveMessage"]
+    </div>
+}
+
+<form class="mb-5" action="/Fractora/Save" method="post" id="form">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <input type="text" name="client_id" class="form-control" placeholder="Client ID" id="pid" />
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <input type="text" name="client_name" class="form-control" placeholder="Client Name" id="pname"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <input type="text" name="regions" class="form-control" placeholder="Region(s)" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <label>Pre Photos Taken:</label>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" name="pre_photos_taken" value="1" />
+                <label class="form-check-label">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" name="pre_photos_taken" value="0" />
+                <label class="form-check-label">No</label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label>Post Photos Taken:</label>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" name="post_photos_taken" value="1" />
+                <label class="form-check-label">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" name="post_photos_taken" value="0" />
+                <label class="form-check-label">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-responsive">
+            <thead class="bg-grey text-white">
+                <tr>
+                    <th>Date</th>
+                    <th>Session Number</th>
+                    <th>Region and <br />Observations</th>
+                    <th>Rf Power</th>
+                    <th colspan="3" class="text-center">RF</th>
+                    <th>Final Temp</th>
+                    <th>Initials</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Cut off temp</th>
+                    <th>Pulse width</th>
+                    <th>2nd RF</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="date" name="date1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno1" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region1" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow1" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp1" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width1" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf1" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp1" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials1" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date2" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno2" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region2" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow2" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp2" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width2" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf2" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp2" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials2" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date3" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno3" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region3" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow3" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp3" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width3" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf3" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp3" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials3" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date4" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno4" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region4" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow4" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp4" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width4" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf4" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp4" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials4" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date5" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno5" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region5" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow5" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp5" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width5" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf5" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp5" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials5" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date6" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno6" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region6" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow6" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp6" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width6" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf6" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp6" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials6" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date7" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno7" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region7" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow7" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp7" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width7" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf7" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp7" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials7" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date8" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno8" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region8" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow8" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp8" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width8" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf8" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp8" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials8" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date9" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno9" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region9" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow9" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp9" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width9" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf9" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp9" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials9" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date10" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno10" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region10" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow10" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp10" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width10" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf10" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp10" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials10" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date11" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno11" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region11" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow11" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp11" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width11" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf11" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp11" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials11" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date12" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno12" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region12" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow12" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width12" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp12" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf12" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp12" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials12" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date13" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno13" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region13" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow13" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp13" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width13" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf13" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp13" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials13" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date14" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow14" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region14" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs14" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp14" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width14" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf14" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp14" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials14" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date15" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno15" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region15" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow15" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cut_off_temp15" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width15" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf15" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp15" placeholder="Final Temp" class="form-control" />
+                    </td>
+
+                    <td>
+                        <input type="text" name="initials15" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date16" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno16" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region16" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pow16" placeholder="RF Power" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="cutt_off_temp16" placeholder="Cut off temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_width16" placeholder="Pulse width" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="rf16" placeholder="2nd RF" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="final_temp16" placeholder="Final Temp" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials16" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-8 offset-sm-4 col-md-4  offset-lg-6">
+            <label>Signature</label>
+            <div id="signature" class="form-control">
+                <canvas id="signature-pad1" class="signature-pad"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-4 offset-lg-4">
+            <input type="button" value="Save" id="save" class="btn btn-block bg-grey text-white" />
+        </div>
+    </div>
+
+    <textarea id='output1' name="provider_signature" class="text-hide"></textarea><br />
+</form>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/signature_pad.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        var signaturePad1 = new SignaturePad(document.getElementById('signature-pad1'));
+        $("#save").click(function () {
+            var pname = $("#pname").val();
+            var pid = $("#pid").val();
+
+            if (pname == "" || pid == "") {
+                alert("Please fill both Patient Name and Patient ID");
+                return false;
+            }
+            var data1 = signaturePad1.toDataURL('image/png');
+            $('#output1').val(data1);
+            $("#form").submit();
+        });
+    });
+</script>
+

@@ -1,0 +1,2115 @@
+﻿@model PatientForms.FotoFacialRF
+
+
+<style>
+    input[type="checkbox"] {
+        width: 20px; /*Desired width*/
+        height: 20px; /*Desired height*/
+    }
+
+    .my-bg {
+        background-color: #0066cc;
+        color: #0066cc;
+    }
+</style>
+
+@{
+    ViewBag.Title = "EditFotoFacial";
+    ViewBag.FormName = "Treatment Record for FotoFacial RF Pro<sup>TM</sup>";
+    ViewBag.bg = "my-bg";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+@if (TempData["updateMessage"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["updateMessage"]
+    </div>
+}
+
+<form action="/FotoFacialRF/Update" method="post" class="mt-5 mb-5" id="form">
+    <div class="row">
+        <div class="form-group col-lg-4">
+            <input type="text" name="client_name" placeholder="Client Name" class="form-control" value="@Model.client_name" />
+        </div>
+        <div class="form-group col-lg-4">
+            <input type="text" name="client_id" placeholder="Client ID" class="form-control" value="@Model.client_id" />
+        </div>
+        <div class="form-group col-lg-4 form-control">
+            <label>Skin Type : &nbsp;&nbsp;</label>
+            <div class="form-check form-check-inline">
+                @if (Model.skin_type == 1)
+                {
+                    <input class="form-check-input" type="checkbox" id="cb1" value="1" name="skin_type" checked />
+                }
+                else
+                {
+                    <input class="form-check-input" type="checkbox" id="cb1" value="1" name="skin_type" />
+                }
+                <label class="form-check-label" for="cb1">I</label>
+            </div>
+            <div class="form-check form-check-inline">
+                @if (Model.skin_type == 2)
+                {
+                    <input class="form-check-input" type="checkbox" id="cb2" value="2" name="skin_type" checked />
+                }
+                else
+                {
+                    <input class="form-check-input" type="checkbox" id="cb2" value="2" name="skin_type" />
+                }
+                <label class="form-check-label" for="cb2">II</label>
+            </div>
+            <div class="form-check form-check-inline">
+                @if (Model.skin_type == 3)
+                {
+                    <input class="form-check-input" type="checkbox" id="cb3" value="3" name="skin_type" checked />
+                }
+                else
+                {
+                    <input class="form-check-input" type="checkbox" id="cb3" value="3" name="skin_type" />
+                }
+                <label class="form-check-label" for="cb3">III</label>
+            </div>
+            <div class="form-check form-check-inline">
+                @if (Model.skin_type == 4)
+                {
+                    <input class="form-check-input" type="checkbox" id="cb4" value="4" name="skin_type" checked />
+                }
+                else
+                {
+                    <input class="form-check-input" type="checkbox" id="cb4" value="4" name="skin_type" />
+                }
+                <label class="form-check-label" for="cb4">IV</label>
+            </div>
+            <div class="form-check form-check-inline">
+                @if (Model.skin_type == 5)
+                {
+                    <input class="form-check-input" type="checkbox" id="cb5" value="5" name="skin_type" checked />
+                }
+                else
+                {
+                    <input class="form-check-input" type="checkbox" id="cb5" value="5" name="skin_type" />
+                }
+                <label class="form-check-label" for="cb5">V</label>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover table-sm">
+        <tr>
+            <td class="my-bg text-white">DATE</td>
+            <td>
+                @if (Model.date1 != null)
+                {
+                    <input type="date" name="date1" class="form-control" placeholder="DATE" value="@Model.date1.Value.ToString("yyyy-MM-dd")" />
+                }
+                else
+                {
+                    <input type="date" name="date1" class="form-control" placeholder="DATE" />
+                }
+            </td>
+            <td>
+                @if (Model.date2 != null)
+                {
+                    <input type="date" name="date2" class="form-control" placeholder="DATE" value="@Model.date2.Value.ToString("yyyy-MM-dd")" />
+                }
+                else
+                {
+                    <input type="date" name="date2" class="form-control" placeholder="DATE" />
+                }
+            </td>
+            <td>
+                @if (Model.date3 != null)
+                {
+                    <input type="date" name="date3" class="form-control" placeholder="DATE" value="@Model.date3.Value.ToString("yyyy-MM-dd")" />
+                }
+                else
+                {
+                    <input type="date" name="date3" class="form-control" placeholder="DATE" />
+                }
+            </td>
+            <td>
+                @if (Model.date4 != null)
+                {
+                    <input type="date" name="date4" class="form-control" placeholder="DATE" value="@Model.date4.Value.ToString("yyyy-MM-dd")" />
+                }
+                else
+                {
+                    <input type="date" name="date4" class="form-control" placeholder="DATE" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="my-bg text-white">TREATMENT SITE</td>
+            <td><input type="text" name="treatment_site1" class="form-control" placeholder="Treatment Site" value="@Model.treatment1" /></td>
+            <td><input type="text" name="treatment_site2" class="form-control" placeholder="Treatment Site" value="@Model.treatment2" /></td>
+            <td><input type="text" name="treatment_site3" class="form-control" placeholder="Treatment Site" value="@Model.treatment3" /></td>
+            <td><input type="text" name="treatment_site4" class="form-control" placeholder="Treatment Site" value="@Model.treatment4" /></td>
+        </tr>
+        <tr>
+            <td class="my-bg text-white">Treatment #</td>
+            <td><input type="text" name="treatment1" class="form-control" placeholder="Treatment #" value="@Model.treatment1" /></td>
+            <td><input type="text" name="treatment2" class="form-control" placeholder="Treatment #" value="@Model.treatment2" /></td>
+            <td><input type="text" name="treatment3" class="form-control" placeholder="Treatment #" value="@Model.treatment3" /></td>
+            <td><input type="text" name="treatment4" class="form-control" placeholder="Treatment #" value="@Model.treatment4" /></td>
+        </tr>
+        <tr>
+            <td class="my-bg text-white">Maintenance Treatment</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.maintenance_treatment1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="maintenance_treatment1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="maintenance_treatment1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.maintenance_treatment1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="maintenance_treatment1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="maintenance_treatment1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.maintenance_treatment2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="maintenance_treatment2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="maintenance_treatment2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.maintenance_treatment2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="maintenance_treatment2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="maintenance_treatment2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.maintenance_treatment3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="maintenance_treatment3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="maintenance_treatment3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.maintenance_treatment3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="maintenance_treatment3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="maintenance_treatment3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.maintenance_treatment4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="maintenance_treatment4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="maintenance_treatment4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.maintenance_treatment4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="maintenance_treatment4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="maintenance_treatment4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Prev. Tx Concerns?</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.prev_concerns1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="prev_concerns1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="prev_concerns1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.prev_concerns1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="prev_concerns1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="prev_concerns1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.prev_concerns2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="prev_concerns2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="prev_concerns2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.prev_concerns2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="prev_concerns2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="prev_concerns2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.prev_concerns3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="prev_concerns3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="prev_concerns3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.prev_concerns3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="prev_concerns3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="prev_concerns3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.prev_concerns4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="prev_concerns4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="prev_concerns4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.prev_concerns4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="prev_concerns4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="prev_concerns4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Med. Changes?</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.med_changes1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="med_changes1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="med_changes1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.med_changes1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="med_changes1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="med_changes1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.med_changes2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="med_changes2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="med_changes2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.med_changes2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="med_changes2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="med_changes2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.med_changes3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="med_changes3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="med_changes3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.med_changes3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="med_changes3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="med_changes3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.med_changes4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="med_changes4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="med_changes4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.med_changes4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="med_changes4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="med_changes4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Sun Exposure</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.sun_exposure1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="sun_exposure1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="sun_exposure1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.sun_exposure1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="sun_exposure1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="sun_exposure1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.sun_exposure2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="sun_exposure2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="sun_exposure2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.sun_exposure2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="sun_exposure2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="sun_exposure2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.sun_exposure3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="sun_exposure3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="sun_exposure3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.sun_exposure3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="sun_exposure3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="sun_exposure3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.sun_exposure4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="sun_exposure4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="sun_exposure4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.sun_exposure4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="sun_exposure4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="sun_exposure4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Num It Applied By</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.num_it_applied_by1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="num_it_applied_by1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="num_it_applied_by1" />
+                    }
+                    <label class="form-check-label" for="cb8">Client</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.num_it_applied_by1 == 2)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="num_it_applied_by1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="num_it_applied_by1" />
+                    }
+                    <label class="form-check-label" for="cb9">Technician</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.num_it_applied_by2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="num_it_applied_by2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="num_it_applied_by2" />
+                    }
+                    <label class="form-check-label" for="cb8">Client</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.num_it_applied_by2 == 2)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="num_it_applied_by2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="num_it_applied_by2" />
+                    }
+                    <label class="form-check-label" for="cb9">Technician</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.num_it_applied_by3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="num_it_applied_by3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="num_it_applied_by3" />
+                    }
+                    <label class="form-check-label" for="cb8">Client</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.num_it_applied_by3 == 2)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="num_it_applied_by3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="num_it_applied_by3" />
+                    }
+                    <label class="form-check-label" for="cb9">Technician</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.num_it_applied_by4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="num_it_applied_by4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="num_it_applied_by4" />
+                    }
+                    <label class="form-check-label" for="cb8">Client</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.num_it_applied_by4 == 2)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="num_it_applied_by4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="num_it_applied_by4" />
+                    }
+                    <label class="form-check-label" for="cb9">Technician</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Eye Protection</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.eye_protection1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="eye_protection1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="eye_protection1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.eye_protection1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="eye_protection1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="eye_protection1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.eye_protection2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="eye_protection2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="eye_protection2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.eye_protection2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="eye_protection2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="eye_protection2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.eye_protection3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="eye_protection3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="eye_protection3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.eye_protection3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="eye_protection3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="eye_protection3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.eye_protection4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="eye_protection4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="eye_protection4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.eye_protection4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="eye_protection4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="eye_protection4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Cryo Cooler</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.cro_cooler1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="cro_cooler1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="cro_cooler1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.cro_cooler1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="cro_cooler1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="cro_cooler1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.cro_cooler2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="cro_cooler2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="cro_cooler2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.cro_cooler2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="cro_cooler2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="cro_cooler2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.cro_cooler3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="cro_cooler3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="cro_cooler3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.cro_cooler3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="cro_cooler3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="cro_cooler3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.cro_cooler4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="cro_cooler4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="cro_cooler4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.cro_cooler4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="cro_cooler4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="cro_cooler4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white"><b>Machine Technology</b></td>
+            <td><input type="text" name="machine_tech1" class="form-control" placeholder="Machine Technology" value="@Model.machine_tech1" /></td>
+            <td><input type="text" name="machine_tech2" class="form-control" placeholder="Machine Technology" value="@Model.machine_tech2" /></td>
+            <td><input type="text" name="machine_tech3" class="form-control" placeholder="Machine Technology" value="@Model.machine_tech3" /></td>
+            <td><input type="text" name="machine_tech4" class="form-control" placeholder="Machine Technology" value="@Model.machine_tech4" /></td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Wavelength</td>
+            <td><input type="text" name="wavelength1" class="form-control" placeholder="Wavelength" value="@Model.wavelength1" /></td>
+            <td><input type="text" name="wavelength2" class="form-control" placeholder="Wavelength" value="@Model.wavelength2" /></td>
+            <td><input type="text" name="wavelength3" class="form-control" placeholder="Wavelength" value="@Model.wavelength3" /></td>
+            <td><input type="text" name="wavelength4" class="form-control" placeholder="Wavelength" value="@Model.wavelength4" /></td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Skintell Readings</td>
+            <td><input type="text" name="skintell_reading1" class="form-control" placeholder="Skintell Readings" value="@Model.skintell_reading1" /></td>
+            <td><input type="text" name="skintell_reading2" class="form-control" placeholder="Skintell Readings" value="@Model.skintell_reading2" /></td>
+            <td><input type="text" name="skintell_reading3" class="form-control" placeholder="Skintell Readings" value="@Model.skintell_reading3" /></td>
+            <td><input type="text" name="skintell_reading4" class="form-control" placeholder="Skintell Readings" value="@Model.skintell_reading4" /></td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Energy/Joules</td>
+            <td><input type="text" name="energy1" class="form-control" placeholder="Enerygy/Joules" value="@Model.energy1" /></td>
+            <td><input type="text" name="energy2" class="form-control" placeholder="Enerygy/Joules" value="@Model.energy2" /></td>
+            <td><input type="text" name="energy3" class="form-control" placeholder="Enerygy/Joules" value="@Model.energy3" /></td>
+            <td><input type="text" name="energy4" class="form-control" placeholder="Enerygy/Joules" value="@Model.energy4" /></td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Pulse Duration</td>
+            <td><input type="text" name="pulse_duration1" class="form-control" placeholder="Pulse Duration" value="@Model.pulse_duration1" /></td>
+            <td><input type="text" name="pulse_duration2" class="form-control" placeholder="Pulse Duration" value="@Model.pulse_duration2" /></td>
+            <td><input type="text" name="pulse_duration3" class="form-control" placeholder="Pulse Duration" value="@Model.pulse_duration3" /></td>
+            <td><input type="text" name="pulse_duration4" class="form-control" placeholder="Pulse Duration" value="@Model.pulse_duration4" /></td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Number of Passes</td>
+            <td><input type="text" name="number_of_passes1" class="form-control" placeholder="Number of Passes" value="@Model.number_of_passes1" /></td>
+            <td><input type="text" name="number_of_passes2" class="form-control" placeholder="Number of Passes" value="@Model.number_of_passes2" /></td>
+            <td><input type="text" name="number_of_passes3" class="form-control" placeholder="Number of Passes" value="@Model.number_of_passes3" /></td>
+            <td><input type="text" name="number_of_passes4" class="form-control" placeholder="Number of Passes" value="@Model.number_of_passes4" /></td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">2<sup>nd</sup> pass tx sites</td>
+            <td><input type="text" name="second_pass_tx_site1" class="form-control" placeholder="2nd pass ts sites" value="@Model.second_pass_tx_site1" /></td>
+            <td><input type="text" name="second_pass_tx_site2" class="form-control" placeholder="2nd pass ts sites" value="@Model.second_pass_tx_site2" /></td>
+            <td><input type="text" name="second_pass_tx_site3" class="form-control" placeholder="2nd pass ts sites" value="@Model.second_pass_tx_site3" /></td>
+            <td><input type="text" name="second_pass_tx_site4" class="form-control" placeholder="2nd pass ts sites" value="@Model.second_pass_tx_site4" /></td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Total Pulses</td>
+            <td><input type="text" name="total_pulses1" class="form-control" placeholder="Total Pulses" value="@Model.total_pulses1" /></td>
+            <td><input type="text" name="total_pulses2" class="form-control" placeholder="Total Pulses" value="@Model.total_pulses2" /></td>
+            <td><input type="text" name="total_pulses3" class="form-control" placeholder="Total Pulses" value="@Model.total_pulses3" /></td>
+            <td><input type="text" name="total_pulses4" class="form-control" placeholder="Total Pulses" value="@Model.total_pulses4" /></td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white"><b>IMMEDIATE<br />POST CARE</b></td>
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care1 == 1)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="1" name="immediate_post_care1" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="1" name="immediate_post_care1" />
+                        }
+                        <label class="form-check-label" for="cb8">contirsone</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care1 == 2)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="2" name="immediate_post_care1" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="2" name="immediate_post_care1" />
+                        }
+                        <label class="form-check-label" for="cb9">sublock</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care1 == 3)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="3" name="immediate_post_care1" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="3" name="immediate_post_care1" />
+                        }
+                        <label class="form-check-label" for="cb8">moisture cr.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care1 == 4)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="4" name="immediate_post_care1" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="4" name="immediate_post_care1" />
+                        }
+                        <label class="form-check-label" for="cb9">cold appl.</label>
+                    </div>
+                </div>
+
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care2 == 1)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="1" name="immediate_post_care2" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="1" name="immediate_post_care2" />
+                        }
+                        <label class="form-check-label" for="cb8">contirsone</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care2 == 2)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="2" name="immediate_post_care2" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="2" name="immediate_post_care2" />
+                        }
+                        <label class="form-check-label" for="cb9">sublock</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care2 == 3)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="3" name="immediate_post_care2" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="3" name="immediate_post_care2" />
+                        }
+                        <label class="form-check-label" for="cb8">moisture cr.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care2 == 4)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="4" name="immediate_post_care2" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="4" name="immediate_post_care2" />
+                        }
+                        <label class="form-check-label" for="cb9">cold appl.</label>
+                    </div>
+                </div>
+
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care3 == 1)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="1" name="immediate_post_care3" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="1" name="immediate_post_care3" />
+                        }
+                        <label class="form-check-label" for="cb8">contirsone</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care3 == 2)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="2" name="immediate_post_care3" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="2" name="immediate_post_care3" />
+                        }
+                        <label class="form-check-label" for="cb9">sublock</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care3 == 3)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="3" name="immediate_post_care3" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="3" name="immediate_post_care3" />
+                        }
+                        <label class="form-check-label" for="cb8">moisture cr.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care3 == 4)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="4" name="immediate_post_care3" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="4" name="immediate_post_care3" />
+                        }
+                        <label class="form-check-label" for="cb9">cold appl.</label>
+                    </div>
+                </div>
+
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care4 == 1)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="1" name="immediate_post_care4" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="1" name="immediate_post_care4" />
+                        }
+                        <label class="form-check-label" for="cb8">contirsone</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care4 == 2)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="2" name="immediate_post_care4" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="2" name="immediate_post_care4" />
+                        }
+                        <label class="form-check-label" for="cb9">sublock</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care4 == 3)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="3" name="immediate_post_care4" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb8" value="3" name="immediate_post_care4" />
+                        }
+                        <label class="form-check-label" for="cb8">moisture cr.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @if (Model.immediate_post_care4 == 4)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="4" name="immediate_post_care4" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="4" name="immediate_post_care4" />
+                        }
+                        <label class="form-check-label" for="cb9">cold appl.</label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Immediate Post<br />Treatment Concerns</td>
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">Yes</label>&nbsp;
+                        @if (Model.immediate_post_treatment1 == 1)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="1" name="immediate_post_treatment1" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="1" name="immediate_post_treatment1" />
+                        }
+                        <label class="form-check-label" for="cb9">(see notes)</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">No</label>&nbsp;
+                        @if (Model.immediate_post_treatment1 == 0)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb10" value="0" name="immediate_post_treatment1" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb10" value="4" name="immediate_post_treatment1" />
+                        }
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">Yes</label>&nbsp;
+                        @if (Model.immediate_post_treatment2 == 1)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="1" name="immediate_post_treatment2" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="1" name="immediate_post_treatment2" />
+                        }
+                        <label class="form-check-label" for="cb9">(see notes)</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">No</label>&nbsp;
+                        @if (Model.immediate_post_treatment2 == 0)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb10" value="0" name="immediate_post_treatment2" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb10" value="0" name="immediate_post_treatment2" />
+                        }
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">Yes</label>&nbsp;
+                        @if (Model.immediate_post_treatment3 == 1)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="1" name="immediate_post_treatment3" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="1" name="immediate_post_treatment3" />
+                        }
+                        <label class="form-check-label" for="cb9">(see notes)</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">No</label>&nbsp;
+                        @if (Model.immediate_post_treatment3 == 0)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb10" value="0" name="immediate_post_treatment3" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb10" value="0" name="immediate_post_treatment3" />
+                        }
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">Yes</label>&nbsp;
+                        @if (Model.immediate_post_treatment4 == 1)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="1" name="immediate_post_treatment4" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb9" value="1" name="immediate_post_treatment4" />
+                        }
+                        <label class="form-check-label" for="cb9">(see notes)</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">No</label>&nbsp;
+                        @if (Model.immediate_post_treatment4 == 0)
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb10" value="0" name="immediate_post_treatment4" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="cb10" value="0" name="immediate_post_treatment4" />
+                        }
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Post Instr. Sheet rev'd</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="post_instr_sheet_review1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="post_instr_sheet_review1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review1 == 2)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="post_instr_sheet_review1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="post_instr_sheet_review1" />
+                    }
+                    <label class="form-check-label" for="cb9">Decl</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="post_instr_sheet_review1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="post_instr_sheet_review1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="post_instr_sheet_review2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="post_instr_sheet_review2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review2 == 2)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="post_instr_sheet_review2" />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="post_instr_sheet_review2" />
+                    }
+                    <label class="form-check-label" for="cb9">Decl</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="post_instr_sheet_review2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="post_instr_sheet_review2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="post_instr_sheet_review3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="post_instr_sheet_review3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review3 == 2)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="post_instr_sheet_review3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="post_instr_sheet_review3" />
+                    }
+                    <label class="form-check-label" for="cb9">Decl</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="post_instr_sheet_review3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="post_instr_sheet_review3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="post_instr_sheet_review4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="post_instr_sheet_review4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review4 == 2)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="post_instr_sheet_review4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="2" name="post_instr_sheet_review4" />
+                    }
+                    <label class="form-check-label" for="cb9">Decl</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.post_instr_sheet_review4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="post_instr_sheet_review4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="post_instr_sheet_review4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="my-bg text-white">Given to client</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.given_to_client1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="given_to_client1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="given_to_client1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.given_to_client1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="given_to_client1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="given_to_client1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.given_to_client2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="given_to_client2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="given_to_client2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.given_to_client2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="given_to_client2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="given_to_client2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.given_to_client3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="given_to_client3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="given_to_client3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.given_to_client3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="given_to_client3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="given_to_client3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.given_to_client4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="given_to_client4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="given_to_client4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.given_to_client4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="given_to_client4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="given_to_client4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Next Appt. Booked</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.next_appt_booked1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="next_appt_booked1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="next_appt_booked1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.next_appt_booked1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="next_appt_booked1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="next_appt_booked1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.next_appt_booked2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="next_appt_booked2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="next_appt_booked2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.next_appt_booked2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="next_appt_booked2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="next_appt_booked2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.next_appt_booked3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="next_appt_booked3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="next_appt_booked3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.next_appt_booked3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="next_appt_booked3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="next_appt_booked3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.next_appt_booked4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="next_appt_booked4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="next_appt_booked4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.next_appt_booked4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="next_appt_booked4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="next_appt_booked4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Treatment Purchased</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.treatment_purchased1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="treatment_purchased1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="treatment_purchased1" />
+                    }
+                    <label class="form-check-label" for="cb8">Pkg</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.treatment_purchased1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="treatment_purchased1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="treatment_purchased1" />
+                    }
+                    <label class="form-check-label" for="cb9">Ind</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.treatment_purchased2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="treatment_purchased2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="treatment_purchased2" />
+                    }
+                    <label class="form-check-label" for="cb8">Pkg</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.treatment_purchased2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="treatment_purchased2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="treatment_purchased2" />
+                    }
+                    <label class="form-check-label" for="cb9">Ind</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.treatment_purchased3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="treatment_purchased3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="treatment_purchased3" />
+                    }
+                    <label class="form-check-label" for="cb8">Pkg</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.treatment_purchased3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="treatment_purchased3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="treatment_purchased3" />
+                    }
+                    <label class="form-check-label" for="cb9">Ind</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.treatment_purchased4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="treatment_purchased4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="treatment_purchased4" />
+                    }
+                    <label class="form-check-label" for="cb8">Pkg</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.treatment_purchased4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="treatment_purchased4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="treatment_purchased4" />
+                    }
+                    <label class="form-check-label" for="cb9">Ind</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Laser Signs Posted</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.laser_sign_posted1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="laser_sign_posted1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="laser_sign_posted1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.laser_sign_posted1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="laser_sign_posted1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="laser_sign_posted1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.laser_sign_posted2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="laser_sign_posted2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="laser_sign_posted2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.laser_sign_posted2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="laser_sign_posted2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="laser_sign_posted2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.laser_sign_posted3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="laser_sign_posted3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="laser_sign_posted3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.laser_sign_posted3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="laser_sign_posted3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="laser_sign_posted3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.laser_sign_posted4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="laser_sign_posted4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="laser_sign_posted4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.laser_sign_posted4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="laser_sign_posted4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="laser_sign_posted4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Extinguisher In Room</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.extinguisher_in_room1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="extinguisher_in_room1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="extinguisher_in_room1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.extinguisher_in_room1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="extinguisher_in_room1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="extinguisher_in_room1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.extinguisher_in_room2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="extinguisher_in_room2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="extinguisher_in_room2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.extinguisher_in_room2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="extinguisher_in_room2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="extinguisher_in_room2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.extinguisher_in_room3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="extinguisher_in_room3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="extinguisher_in_room3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.extinguisher_in_room3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="extinguisher_in_room3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="extinguisher_in_room3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.extinguisher_in_room4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="extinguisher_in_room4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="extinguisher_in_room4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.extinguisher_in_room4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="extinguisher_in_room4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="extinguisher_in_room4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">SEE NOTES</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.see_notes1 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="see_notes1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="see_notes1" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.see_notes1 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="see_notes1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="see_notes1" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.see_notes2 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="see_notes2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="see_notes2" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.see_notes2 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="see_notes2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="see_notes2" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.see_notes3 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="see_notes3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="see_notes3" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.see_notes3 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="see_notes3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="see_notes3" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    @if (Model.see_notes4 == 1)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="see_notes4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb8" value="1" name="see_notes4" />
+                    }
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @if (Model.see_notes4 == 0)
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="see_notes4" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="cb9" value="0" name="see_notes4" />
+                    }
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Initials</td>
+            <td><input type="text" name="initials1" class="form-control" placeholder="Initials" value="@Model.initials1" /></td>
+            <td><input type="text" name="initials2" class="form-control" placeholder="Initials" value="@Model.initials2" /></td>
+            <td><input type="text" name="initials3" class="form-control" placeholder="Initials" value="@Model.initials3" /></td>
+            <td><input type="text" name="initials4" class="form-control" placeholder="Initials" value="@Model.initials4" /></td>
+        </tr>
+
+        <tr>
+            <td class="my-bg text-white">Comments</td>
+            <td><textarea name="comments1" rows="4" class="form-control" placeholder="Comments">@Model.comments1</textarea></td>
+            <td><textarea name="comments2" rows="4" class="form-control" placeholder="Comments">@Model.comments2</textarea></td>
+            <td><textarea name="comments3" rows="4" class="form-control" placeholder="Comments">@Model.comments3</textarea></td>
+            <td><textarea name="comments4" rows="4" class="form-control" placeholder="Comments">@Model.comments4</textarea></td>
+        </tr>
+
+        <tr>
+            <td class="bg-dark text-white">T x Provider Signature </td>
+            <td>
+                <div class="form-control" style="height:70px"><img src="@Model.provider_signature1" /></div>
+            </td>
+            <td>
+                @if (Model.t_day == 2)
+                {
+                    <div class="form-control" style="height:75px;border:solid 1px black">
+                        <canvas id="signature-pad2" class="signature-pad"></canvas>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-control" style="height:70px"><img src="@Model.provider_signature2" /></div>
+                }
+
+            </td>
+            <td>
+                @if (Model.t_day == 3)
+                {
+                    <div class="form-control" style="height:75px;border:solid 1px black">
+                        <canvas id="signature-pad3" class="signature-pad"></canvas>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-control" style="height:70px"><img src="@Model.provider_signature3" /></div>
+                }
+
+            </td>
+            <td>
+                @if (Model.t_day == 4)
+                {
+                    <div class="form-control" style="height:75px;border:solid 1px black">
+                        <canvas id="signature-pad4" class="signature-pad"></canvas>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-control" style="height:70px"><img src="@Model.provider_signature4" /></div>
+                }
+
+            </td>
+        </tr>
+
+    </table>
+    <div class="row mb-5">
+        <div class="col-lg-4 offset-lg-4">
+            <button type="button" class="btn my-bg btn-block text-white" id="save">Update</button>
+        </div>
+    </div>
+    <input type="hidden" value="@Model.t_day" name="t_day" />
+    <textarea id='output1' name="provider_signature1" class="text-hide">@Model.provider_signature1</textarea><br />
+    @if (Model.t_day == 2)
+    {
+        <textarea id='output2' name="provider_signature2" class="text-hide"></textarea><br />
+    }
+    else
+    {
+        <textarea id='output2' name="provider_signature2" class="text-hide">@Model.provider_signature2</textarea><br />
+    }
+    @if (Model.t_day == 3)
+    {
+        <textarea id='output3' name="provider_signature3" class="text-hide"></textarea><br />
+    }
+    else
+    {
+        <textarea id='output3' name="provider_signature3" class="text-hide">@Model.provider_signature3</textarea><br />
+    }
+    @if (Model.t_day == 4)
+    {
+        <textarea id='output4' name="provider_signature4" class="text-hide"></textarea><br />
+    }
+    else
+    {
+        <textarea id='output4' name="provider_signature4" class="text-hide">@Model.provider_signature4</textarea><br />
+    }
+</form>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/signature_pad.js"></script>
+
+
+@if (Model.t_day == 2)
+{
+    <script src="~/Scripts/signature2.js"></script>
+}
+else if (Model.t_day == 3)
+{
+    <script src="~/Scripts/signature3.js"></script>
+}
+else if (Model.t_day == 4)
+{
+    <script src="~/Scripts/signature4.js"></script>
+}
+else
+{
+    <script src="~/Scripts/saveform.js"></script>
+}
+
+

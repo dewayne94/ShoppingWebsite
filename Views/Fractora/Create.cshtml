@@ -1,0 +1,625 @@
+﻿
+<style>
+    input[type="checkbox"] {
+        width: 20px; /*Desired width*/
+        height: 20px; /*Desired height*/
+    }
+
+    .bg-grey {
+        background-color: #808080;
+    }
+        #signature {
+        height: 50px;
+        border: 1px solid black;
+    }
+</style>
+
+@{
+    ViewBag.bg = "bg-grey";
+    ViewBag.FormName = "Fractora / Fractora 3000 Treatment Log";
+    ViewBag.Title = "FotoFacial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+@if (TempData["saveMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["saveMessage"]
+    </div>
+}
+
+<form class="mb-5" action="/Fractora/Save" method="post" id="form">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <input type="text" name="client_id" class="form-control" placeholder="Client ID" id="pid" />
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <input type="text" name="client_name" class="form-control" placeholder="Client Name" id="pname" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <input type="text" name="regions" class="form-control" placeholder="Region(s)" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <label>Pre Photos Taken:</label>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" name="pre_photos_taken" value="1" />
+                <label class="form-check-label">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" name="pre_photos_taken" value="0" />
+                <label class="form-check-label">No</label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label>Post Photos Taken:</label>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" name="post_photos_taken" value="1" />
+                <label class="form-check-label">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" name="post_photos_taken" value="0" />
+                <label class="form-check-label">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-responsive">
+            <thead class="bg-grey text-white">
+                <tr>
+                    <th>Date</th>
+                    <th>Session Number</th>
+                    <th>Region</th>
+                    <th>Observations</th>
+                    <th colspan="3" class="text-center">RF</th>
+                    <th>Pulses</th>
+                    <th>Initials</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Tip size</th>
+                    <th>Energy per pin</th>
+                    <th>Pulserate</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="date" name="date1" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno1" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region1" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs1" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size1" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy1" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate1" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses1" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials1" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date2" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno2" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region2" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs2" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size2" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy2" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate2" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses2" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials2" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date3" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno3" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region3" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs3" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size3" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy3" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate3" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses3" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials3" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date4" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno4" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region4" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs4" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size4" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy4" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate4" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses4" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials4" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date5" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno5" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region5" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs5" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size5" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy5" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate5" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses5" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials5" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date6" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno6" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region6" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs6" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size6" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy6" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate6" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses6" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials6" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date7" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno7" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region7" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs7" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size7" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy7" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate7" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses7" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials7" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date8" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno8" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region8" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs8" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size8" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy8" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate8" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses8" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials8" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date9" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno9" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region9" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs9" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size9" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy9" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate9" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses9" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials9" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date10" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno10" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region10" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs10" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size10" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy10" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate10" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses10" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials10" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date11" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno11" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region11" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs11" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size11" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy11" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate11" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses11" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials11" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date12" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno12" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region12" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs12" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size12" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy12" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate12" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses12" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials12" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date13" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno13" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region13" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs13" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size13" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy13" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate13" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses13" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials13" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date14" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno14" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region14" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs14" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size14" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy14" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate14" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses14" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials14" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date15" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno15" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region15" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs15" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size15" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy15" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate15" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses15" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials15" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="date" name="date16" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="sno16" placeholder="Session No." class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="region16" placeholder="Region" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="obs16" placeholder="Observation" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="tips_size16" placeholder="Tip Size" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="energy16" placeholder="Energy per pin" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulse_rate16" placeholder="Pulse Rate" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="pulses16" placeholder="Pulses" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="initials16" placeholder="Initials" class="form-control" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-8 offset-sm-4 col-md-4  offset-lg-6">
+            <label>Signature</label>
+            <div id="signature" class="form-control">
+                <canvas id="signature-pad1" class="signature-pad"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-4 offset-lg-4">
+            <input type="button" value="Save" id="save" class="btn btn-block bg-grey text-white" />
+        </div>
+    </div>
+
+    <textarea id='output1' name="provider_signature" class="text-hide"></textarea><br />
+</form>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/signature_pad.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        var signaturePad1 = new SignaturePad(document.getElementById('signature-pad1'));
+        $("#save").click(function () {
+
+            var pname = $("#pname").val();
+            var pid = $("#pid").val();
+
+            if (pname == "" || pid == "") {
+                alert("Please fill both Patient Name and Patient ID");
+                return false;
+            }
+
+            var data1 = signaturePad1.toDataURL('image/png');
+            $('#output1').val(data1);
+            $("#form").submit();
+        });
+    });
+</script>

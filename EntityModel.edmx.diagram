@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2be7a427a9db464fba8da16ef852f087" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="MediFormModel.Cervical" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.Facialvein" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.FotoFacial" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.FotoFacialRF" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.Fractora" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.GeneralNote" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.Intracell" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.LaserHairRemoval" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.Palomar" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.Picosure" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediFormModel.Billing" Width="1.5" PointX="15.375" PointY="13.75" />
+        <EntityTypeShape EntityType="MediFormModel.Bodyfx" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MediFormModel.Formaface" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MediFormModel.Nonsurgical" Width="1.5" PointX="21.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

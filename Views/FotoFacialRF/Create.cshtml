@@ -1,0 +1,1021 @@
+﻿
+
+<style>
+    input[type="checkbox"] {
+        width: 20px; /*Desired width*/
+        height: 20px; /*Desired height*/
+    }
+
+    .bg-red {
+        background-color: #e60000;
+    }
+     #signature {
+        height: 50px;
+        border: 1px solid black;
+    }
+</style>
+
+@{
+    ViewBag.bg = "bg-red";
+    ViewBag.FormName = "Treatment Record for FotoFacial RF Pro<sup>TM</sup>";
+    ViewBag.Title = "FotoFacial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+@if (TempData["saveMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["saveMessage"]
+    </div>
+}
+
+<form action="/FotoFacialRF/Save" method="post" class="mt-5 mb-5" id="form">
+    <div class="row">
+        <div class="form-group col-lg-4">
+            <input type="text" name="client_name" placeholder="Client Name" class="form-control" id="pname" />
+        </div>
+        <div class="form-group col-lg-4">
+            <input type="text" name="client_id" placeholder="Client ID" class="form-control" id="pid"/>
+        </div>
+        <div class="form-group col-lg-4 form-control">
+            <label>Skin Type : &nbsp;&nbsp;</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="1" name="skin_type" />
+                <label class="form-check-label" for="cb1">I</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="2" name="skin_type" />
+                <label class="form-check-label" for="cb2">II</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="3" name="skin_type" />
+                <label class="form-check-label" for="cb3">III</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="4" name="skin_type" />
+                <label class="form-check-label" for="cb4">IV</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="5" name="skin_type" />
+                <label class="form-check-label" for="cb5">V</label>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover table-sm">
+        <tr>
+            <td class="bg-red text-white">DATE</td>
+            <td><input type="date" name="date1" class="form-control" placeholder="DATE" /></td>
+            <td><input type="date" name="date2" class="form-control" placeholder="DATE" /></td>
+            <td><input type="date" name="date3" class="form-control" placeholder="DATE" /></td>
+            <td><input type="date" name="date4" class="form-control" placeholder="DATE" /></td>
+        </tr>
+        <tr>
+            <td class="bg-red text-white">TREATMENT SITE</td>
+            <td><input type="text" name="treatment_site1" class="form-control" placeholder="Treatment Site" /></td>
+            <td><input type="text" name="treatment_site2" class="form-control" placeholder="Treatment Site" /></td>
+            <td><input type="text" name="treatment_site3" class="form-control" placeholder="Treatment Site" /></td>
+            <td><input type="text" name="treatment_site4" class="form-control" placeholder="Treatment Site" /></td>
+        </tr>
+        <tr>
+            <td class="bg-red text-white">Treatment #</td>
+            <td><input type="text" name="treatment1" class="form-control" placeholder="Treatment #" /></td>
+            <td><input type="text" name="treatment2" class="form-control" placeholder="Treatment #" /></td>
+            <td><input type="text" name="treatment3" class="form-control" placeholder="Treatment #" /></td>
+            <td><input type="text" name="treatment4" class="form-control" placeholder="Treatment #" /></td>
+        </tr>
+        <tr>
+            <td class="bg-red text-white">Maintenance Treatment</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="maintenance_treatment1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="maintenance_treatment1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="maintenance_treatment2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="maintenance_treatment2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="maintenance_treatment3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="maintenance_treatment3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="maintenance_treatment4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="maintenance_treatment4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Prev. Tx Concerns?</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="prev_concerns1" />
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="prev_concerns1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="prev_concerns2" />
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="prev_concerns2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="prev_concerns3" />
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="prev_concerns3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="prev_concerns14" />
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="prev_concerns4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Med. Changes?</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="med_changes1" />
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="med_changes1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="med_changes2" />
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="med_changes2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="med_changes3" />
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="med_changes3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="med_changes4" />
+                    <label class="form-check-label" for="cb8">Yes (see hx/notes)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="med_changes4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Sun Exposure</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="sun_exposure1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="sun_exposure1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="sun_exposure2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="sun_exposure2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="sun_exposure3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="sun_exposure3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="sun_exposure4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="sun_exposure4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Num It Applied By</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="num_it_applied_by1" />
+                    <label class="form-check-label" for="cb8">Client</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="2" name="num_it_applied_by1" />
+                    <label class="form-check-label" for="cb9">Technician</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="num_it_applied_by2" />
+                    <label class="form-check-label" for="cb8">Client</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="2" name="num_it_applied_by2" />
+                    <label class="form-check-label" for="cb9">Technician</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="num_it_applied_by3" />
+                    <label class="form-check-label" for="cb8">Client</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="2" name="num_it_applied_by3" />
+                    <label class="form-check-label" for="cb9">Technician</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="num_it_applied_by4" />
+                    <label class="form-check-label" for="cb8">Client</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="2" name="num_it_applied_by4" />
+                    <label class="form-check-label" for="cb9">Technician</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Eye Protection</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="eye_protection1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="eye_protection1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="eye_protection2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="eye_protection2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="eye_protection3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="eye_protection3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="eye_protection4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="eye_protection4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Cryo Cooler</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="cro_cooler1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="cro_cooler1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="cro_cooler2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="cro_cooler2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="cro_cooler3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="cro_cooler3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="cro_cooler4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="cro_cooler4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white"><b>Machine Technology</b></td>
+            <td><input type="text" name="machine_tech1" class="form-control" placeholder="Machine Technology" /></td>
+            <td><input type="text" name="machine_tech2" class="form-control" placeholder="Machine Technology" /></td>
+            <td><input type="text" name="machine_tech3" class="form-control" placeholder="Machine Technology" /></td>
+            <td><input type="text" name="machine_tech4" class="form-control" placeholder="Machine Technology" /></td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Wavelength</td>
+            <td><input type="text" name="wavelength1" class="form-control" placeholder="Wavelength" /></td>
+            <td><input type="text" name="wavelength2" class="form-control" placeholder="Wavelength" /></td>
+            <td><input type="text" name="wavelength3" class="form-control" placeholder="Wavelength" /></td>
+            <td><input type="text" name="wavelength4" class="form-control" placeholder="Wavelength" /></td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Skintell Readings</td>
+            <td><input type="text" name="skintell_reading1" class="form-control" placeholder="Skintell Readings" /></td>
+            <td><input type="text" name="skintell_reading2" class="form-control" placeholder="Skintell Readings" /></td>
+            <td><input type="text" name="skintell_reading3" class="form-control" placeholder="Skintell Readings" /></td>
+            <td><input type="text" name="skintell_reading4" class="form-control" placeholder="Skintell Readings" /></td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Energy/Joules</td>
+            <td><input type="text" name="energy1" class="form-control" placeholder="Enerygy/Joules" /></td>
+            <td><input type="text" name="energy2" class="form-control" placeholder="Enerygy/Joules" /></td>
+            <td><input type="text" name="energy3" class="form-control" placeholder="Enerygy/Joules" /></td>
+            <td><input type="text" name="energy4" class="form-control" placeholder="Enerygy/Joules" /></td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Pulse Duration</td>
+            <td><input type="text" name="pulse_duration1" class="form-control" placeholder="Pulse Duration" /></td>
+            <td><input type="text" name="pulse_duration2" class="form-control" placeholder="Pulse Duration" /></td>
+            <td><input type="text" name="pulse_duration3" class="form-control" placeholder="Pulse Duration" /></td>
+            <td><input type="text" name="pulse_duration4" class="form-control" placeholder="Pulse Duration" /></td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Number of Passes</td>
+            <td><input type="text" name="number_of_passes1" class="form-control" placeholder="Number of Passes" /></td>
+            <td><input type="text" name="number_of_passes2" class="form-control" placeholder="Number of Passes" /></td>
+            <td><input type="text" name="number_of_passes3" class="form-control" placeholder="Number of Passes" /></td>
+            <td><input type="text" name="number_of_passes4" class="form-control" placeholder="Number of Passes" /></td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">2<sup>nd</sup> pass tx sites</td>
+            <td><input type="text" name="second_pass_tx_site1" class="form-control" placeholder="2nd pass ts sites" /></td>
+            <td><input type="text" name="second_pass_tx_site2" class="form-control" placeholder="2nd pass ts sites" /></td>
+            <td><input type="text" name="second_pass_tx_site3" class="form-control" placeholder="2nd pass ts sites" /></td>
+            <td><input type="text" name="second_pass_tx_site4" class="form-control" placeholder="2nd pass ts sites" /></td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Total Pulses</td>
+            <td><input type="text" name="total_pulses1" class="form-control" placeholder="Total Pulses" /></td>
+            <td><input type="text" name="total_pulses2" class="form-control" placeholder="Total Pulses" /></td>
+            <td><input type="text" name="total_pulses3" class="form-control" placeholder="Total Pulses" /></td>
+            <td><input type="text" name="total_pulses4" class="form-control" placeholder="Total Pulses" /></td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white"><b>IMMEDIATE<br />POST CARE</b></td>
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="immediate_post_care1" />
+                        <label class="form-check-label" for="cb8">contirsone</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="immediate_post_care1" />
+                        <label class="form-check-label" for="cb9">sublock</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="3" name="immediate_post_care1" />
+                        <label class="form-check-label" for="cb8">moisture cr.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="immediate_post_care1" />
+                        <label class="form-check-label" for="cb9">cold appl.</label>
+                    </div>
+                </div>
+
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="immediate_post_care2" />
+                        <label class="form-check-label" for="cb8">contirsone</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="immediate_post_care2" />
+                        <label class="form-check-label" for="cb9">sublock</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="3" name="immediate_post_care2" />
+                        <label class="form-check-label" for="cb8">moisture cr.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="immediate_post_care2" />
+                        <label class="form-check-label" for="cb9">cold appl.</label>
+                    </div>
+                </div>
+
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="immediate_post_care3" />
+                        <label class="form-check-label" for="cb8">contirsone</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="immediate_post_care3" />
+                        <label class="form-check-label" for="cb9">sublock</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="3" name="immediate_post_care3" />
+                        <label class="form-check-label" for="cb8">moisture cr.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="immediate_post_care3" />
+                        <label class="form-check-label" for="cb9">cold appl.</label>
+                    </div>
+                </div>
+
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="immediate_post_care4" />
+                        <label class="form-check-label" for="cb8">contirsone</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="immediate_post_care4" />
+                        <label class="form-check-label" for="cb9">sublock</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="3" name="immediate_post_care4" />
+                        <label class="form-check-label" for="cb8">moisture cr.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="4" name="immediate_post_care4" />
+                        <label class="form-check-label" for="cb9">cold appl.</label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Immediate Post<br />Treatment Concerns</td>
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">Yes</label>&nbsp;
+                        <input class="form-check-input" type="checkbox" value="1" name="immediate_post_treatment1" />
+                        <label class="form-check-label" for="cb9">(see notes)</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">No</label>&nbsp;
+                        <input class="form-check-input" type="checkbox" value="0" name="immediate_post_treatment1" />
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">Yes</label>&nbsp;
+                        <input class="form-check-input" type="checkbox" value="1" name="immediate_post_treatment2" />
+                        <label class="form-check-label" for="cb9">(see notes)</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">No</label>&nbsp;
+                        <input class="form-check-input" type="checkbox" value="0" name="immediate_post_treatment2" />
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">Yes</label>&nbsp;
+                        <input class="form-check-input" type="checkbox" value="1" name="immediate_post_treatment3" />
+                        <label class="form-check-label" for="cb9">(see notes)</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">No</label>&nbsp;
+                        <input class="form-check-input" type="checkbox" value="0" name="immediate_post_treatment3" />
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">Yes</label>&nbsp;
+                        <input class="form-check-input" type="checkbox" value="1" name="immediate_post_treatment4" />
+                        <label class="form-check-label" for="cb9">(see notes)</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cb9">No</label>&nbsp;
+                        <input class="form-check-input" type="checkbox" value="0" name="immediate_post_treatment4" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Post Instr. Sheet rev'd</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="post_instr_sheet_review1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="2" name="post_instr_sheet_review1" />
+                    <label class="form-check-label" for="cb9">Decl</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="post_instr_sheet_review1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="post_instr_sheet_review2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="2" name="post_instr_sheet_review2" />
+                    <label class="form-check-label" for="cb9">Decl</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="post_instr_sheet_review2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="post_instr_sheet_review3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="2" name="post_instr_sheet_review3" />
+                    <label class="form-check-label" for="cb9">Decl</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="post_instr_sheet_review3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="post_instr_sheet_review4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="2" name="post_instr_sheet_review4" />
+                    <label class="form-check-label" for="cb9">Decl</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="post_instr_sheet_review4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="bg-red text-white">Given to client</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="given_to_client1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="given_to_client1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="given_to_client2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="given_to_client2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="given_to_client3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="given_to_client3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="given_to_client4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="given_to_client4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Next Appt. Booked</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="next_appt_booked1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="next_appt_booked1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="next_appt_booked2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="next_appt_booked2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="next_appt_booked3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="next_appt_booked3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="next_appt_booked4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="next_appt_booked4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Treatment Purchased</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="treatment_purchased1" />
+                    <label class="form-check-label" for="cb8">Pkg</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="treatment_purchased1" />
+                    <label class="form-check-label" for="cb9">Ind</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="treatment_purchased2" />
+                    <label class="form-check-label" for="cb8">Pkg</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="treatment_purchased2" />
+                    <label class="form-check-label" for="cb9">Ind</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="treatment_purchased3" />
+                    <label class="form-check-label" for="cb8">Pkg</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="treatment_purchased3" />
+                    <label class="form-check-label" for="cb9">Ind</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="treatment_purchased4" />
+                    <label class="form-check-label" for="cb8">Pkg</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="treatment_purchased4" />
+                    <label class="form-check-label" for="cb9">Ind</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Laser Signs Posted</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="laser_sign_posted1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="laser_sign_posted1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="laser_sign_posted2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="laser_sign_posted2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="laser_sign_posted3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="laser_sign_posted3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="laser_sign_posted4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="laser_sign_posted4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Extinguisher In Room</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="extinguisher_in_room1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="extinguisher_in_room1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="extinguisher_in_room2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="extinguisher_in_room2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="extinguisher_in_room3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="extinguisher_in_room3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="extinguisher_in_room4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="extinguisher_in_room4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">SEE NOTES</td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="see_notes1" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="see_notes1" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="see_notes2" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="see_notes2" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="see_notes3" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="see_notes3" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="1" name="see_notes4" />
+                    <label class="form-check-label" for="cb8">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="0" name="see_notes4" />
+                    <label class="form-check-label" for="cb9">No</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Initials</td>
+            <td><input type="text" name="initials1" class="form-control" placeholder="Initials" /></td>
+            <td><input type="text" name="initials2" class="form-control" placeholder="Initials" /></td>
+            <td><input type="text" name="initials3" class="form-control" placeholder="Initials" /></td>
+            <td><input type="text" name="initials4" class="form-control" placeholder="Initials" /></td>
+        </tr>
+
+        <tr>
+            <td class="bg-red text-white">Comments</td>
+            <td><textarea name="comments1" rows="4" class="form-control" placeholder="Comments"></textarea></td>
+            <td><textarea name="comments2" rows="4" class="form-control" placeholder="Comments"></textarea></td>
+            <td><textarea name="comments3" rows="4" class="form-control" placeholder="Comments"></textarea></td>
+            <td><textarea name="comments4" rows="4" class="form-control" placeholder="Comments"></textarea></td>
+        </tr>
+        <tr>
+            <td class="bg-red text-white">Signature</td>
+            <td>
+                <div id="signature" class="form-control">
+                    <canvas id="signature-pad1" class="signature-pad"></canvas>
+                </div>
+            </td>
+            <td>
+                <div class="form-control" style="height:50px"></div>
+            </td>
+            <td>
+                <div class="form-control" style="height:50px"></div>
+            </td>
+            <td>
+                <div class="form-control" style="height:50px"></div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="col-lg-4 offset-lg-4">
+        <button type="button" class="btn bg-red btn-block" id="save">Save</button>
+    </div>
+
+    <textarea id='output1' name="provider_signature1" class="text-hide"></textarea><br />
+
+    <input type="hidden" name="t_day" value="2" />
+</form>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/signature_pad.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+                var signaturePad1 = new SignaturePad(document.getElementById('signature-pad1'));
+
+                $("#save").click(function () {
+
+                    var pname = $("#pname").val();
+                    var pid = $("#pid").val();
+
+                    if (pname == "" || pid == "") {
+                        alert("Please fill both Patient Name and Patient ID");
+                        return false;
+                    }
+
+                        var data1 = signaturePad1.toDataURL('image/png');
+
+                        $('#output1').val(data1);
+
+                        $("#form").submit();
+                })
+            })
+
+
+</script>

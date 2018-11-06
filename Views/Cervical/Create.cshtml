@@ -1,0 +1,400 @@
+﻿
+<style>
+    .my-bg{
+        background-color:#9900ff;
+    }
+    .img1{
+        background-image:url('../../Images/face1.PNG');
+        background-size:100% auto;
+        width:100%;
+        height:500px;
+        background-repeat:no-repeat;
+    }
+    .img2{
+        background-image:url('../../Images/face2.PNG');
+        background-size:100% auto;
+        width:100%;
+        height:500px;
+        background-repeat:no-repeat;
+    }
+        input[type="checkbox"] {
+        width: 20px; /*Desired width*/
+        height: 20px; /*Desired height*/
+    }
+    #signature {
+        height: 50px;
+        border: 1px solid black;
+    }
+    .first-col{
+        width:20px;
+    }
+</style>
+@{
+    ViewBag.Title = "Create";
+    ViewBag.bg = "my-bg";
+    ViewBag.FormName = "FACIAL/CERVICAL INJECTABLES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+
+@if(TempData["saveMessage"]!=null)
+{
+    <div class="alert alert-success">
+        @TempData["saveMessage"]
+    </div>
+}
+<div class="col-lg-10 offset-lg-1 mb-5">
+    <form action="/Cervical/Save" method="post" id="form">
+        <div class="form-group">
+            <input type="text" class="form-control" name="patient_id" placeholder="Patient ID" id="pid"/>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="patient_name" placeholder="Patient Name" id="pname"/>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="img1 img-fluid">
+                    <canvas id="mySketcher1"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="img2 img-fluid">
+                    <canvas id="mySketcher2"></canvas>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <table class="table table-bordered table-responsive">
+                <thead class="my-bg text-white">
+                    <tr>
+                        <th width="10%">DATE</th>
+                        <th>AREA INJECTED</th>
+                        <th>PRODUCT</th>
+                        <th>AMOUNT</th>
+                        <th>LOT #</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="date" name="date1" class="form-control" placeholder="DATE" />
+                        </td>
+                        <td>
+                            <input type="text" name="area1"  class="form-control" placeholder="Area Injected"/>
+                        </td>
+                        <td>
+                            <input type="text" name="product1" class="form-control" placeholder="Product"/>
+                        </td>
+                        <td>
+                            <input type="text" name="amount1" class="form-control" placeholder="Amount"/>
+                        </td>
+                        <td>
+                            <input type="text" name="lot1" class="form-control" placeholder="LOT #"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date2" class="form-control" placeholder="DATE"/>
+                        </td>
+                        <td>
+                            <input type="text" name="area2" class="form-control" placeholder="Area Injected"/>
+                        </td>
+                        <td>
+                            <input type="text" name="product2" class="form-control" placeholder="Product"/>
+                        </td>
+                        <td>
+                            <input type="text" name="amount2" class="form-control" placeholder="Amount"/>
+                        </td>
+                        <td>
+                            <input type="text" name="lot2" class="form-control" placeholder="LOT #"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date3" class="form-control" placeholder="DATE"/>
+                        </td>
+                        <td>
+                            <input type="text" name="area3" class="form-control" placeholder="Area Injected"/>
+                        </td>
+                        <td>
+                            <input type="text" name="product3" class="form-control" placeholder="Product"/>
+                        </td>
+                        <td>
+                            <input type="text" name="amount3" class="form-control" placeholder="Amount"/>
+                        </td>
+                        <td>
+                            <input type="text" name="lot3" class="form-control" placeholder="LOT #"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date4" class="form-control" placeholder="DATE"/>
+                        </td>
+                        <td>
+                            <input type="text" name="area4" class="form-control" placeholder="Area injected"/>
+                        </td>
+                        <td>
+                            <input type="text" name="product4" class="form-control" placeholder="Product"/>
+                        </td>
+                        <td>
+                            <input type="text" name="amount4" class="form-control" placeholder="Amount"/>
+                        </td>
+                        <td>
+                            <input type="text" name="lot4" class="form-control" placeholder="LOT #"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="date" name="date5" class="form-control" placeholder="DATE"/>
+                        </td>
+                        <td>
+                            <input type="text" name="area5" class="form-control" placeholder="Area Injected"/>
+                        </td>
+                        <td>
+                            <input type="text" name="product5" class="form-control" placeholder="Product"/>
+                        </td>
+                        <td>
+                            <input type="text" name="amount5" class="form-control" placeholder="Amount"/>
+                        </td>
+                        <td>
+                            <input type="text" name="lot5" class="form-control" placeholder="LOT #"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-md-6">
+                    
+                        <label>01. Patient pregnant or nursing?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="1" name="pregnant" />
+                            <label class="form-check-label" for="cb8">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="0" name="pregnant" />
+                            <label class="form-check-label" for="cb8">No</label>
+                        </div>
+                    <hr />
+
+                    <label>02. ASA products in the past 10 days?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="products_in_10_days" />
+                        <label class="form-check-label" for="cb8">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="products_in_10_days" />
+                        <label class="form-check-label" for="cb8">No</label>
+                    </div>
+                    <hr />
+
+                    <label>03. First time for treatment?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="first_treatment" />
+                        <label class="form-check-label" for="cb8">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="first_treatment" />
+                        <label class="form-check-label" for="cb8">No</label>
+                    </div>
+                    <hr />
+
+                    <label>04. Pictures taken?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="pictures_taken" />
+                        <label class="form-check-label" for="cb8">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="pictures_taken" />
+                        <label class="form-check-label" for="cb8">Pre</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="3" name="pictures_taken" />
+                        <label class="form-check-label" for="cb8">Post</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="pictures_taken" />
+                        <label class="form-check-label" for="cb8">No</label>
+                    </div>
+                    <hr />
+
+                    <label>05. Num-It Applied?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="num_it_applied" />
+                        <label class="form-check-label" for="cb8">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="num_it_applied" />
+                        <label class="form-check-label" for="cb8">Post</label>
+                    </div>
+                    <input type="text" name="num_it_applied_areas" class="form-control" placeholder="Areas" />
+                    <hr />
+
+                    <label>06. Cryo 5 used?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="cyro_used" />
+                        <label class="form-check-label" for="cb8">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="cyro_used" />
+                        <label class="form-check-label" for="cb8">No</label>
+                    </div>
+                    <input type="text" name="cyro_used_areas" class="form-control" placeholder="Areas" />
+                    <hr />
+
+                    <label>07. Prone to cold scores?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="prone_to_cold" />
+                        <label class="form-check-label" for="cb8">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="prone_to_cold" />
+                        <label class="form-check-label" for="cb8">No</label>
+                    </div>
+                    <br />
+                    <label>Vertes Rx given?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="vertex_given" />
+                        <label class="form-check-label" for="cb8">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="vertex_given" />
+                        <label class="form-check-label" for="cb8">No</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="2" name="vertex_given" />
+                        <label class="form-check-label" for="cb8">N/A</label>
+                    </div>
+                    <hr />
+
+                    <label>08. 25G Cannula used for?</label>
+                    <input type="text" name="25g_cannula_used_for" class="form-control" placeholder="25G Cannula used for" />
+                    <label>22G Cannula used for?</label>
+                    <input type="text" name="22g_cannula_used_for" class="form-control" placeholder="22G Cannula used for" />
+                    <label>Needles used for:</label>
+                    <input type="text" name="needles_used_for" class="form-control" placeholder="22G Cannula used for" />
+
+                    <div class="mt-2">
+                        <label>Filters</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="0" name="filters" />
+                            <label class="form-check-label" for="cb8">N/A</label>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <label>09. Cold get pack applied?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="cold_pack_applied" />
+                        <label class="form-check-label" for="cb8">yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="cold_pack_applied" />
+                        <label class="form-check-label" for="cb8">No</label>
+                    </div>
+                    <hr />
+
+                    <label>10. Procedure tolerated?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="procedure_tolerated" />
+                        <label class="form-check-label" for="cb8">well</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="procedure_tolerated" />
+                        <label class="form-check-label" for="cb8">Some discomfort</label>
+                    </div>
+                    <hr />
+
+                    <label>11. Post-treatment instructions reviewed?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="post_treatment_reviewed" />
+                        <label class="form-check-label" for="cb8">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="post_treatment_reviewed" />
+                        <label class="form-check-label" for="cb8">No</label>
+                    </div>
+                    <br />
+                    <label>Given to patient?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" name="given_to_patient" />
+                        <label class="form-check-label" for="cb8">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="0" name="given_to_patient" />
+                        <label class="form-check-label" for="cb8">No</label>
+                    </div>
+                    <hr />
+                </div>
+                <div class="col-md-6">
+                    <textarea style="width:100%;height:100%" placeholder="Notes" class="form-control" name="notes"></textarea>
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-6">
+                <label>Signature:</label>
+            </div>
+            <div id="signature" class="col-md-6 offset-md-6">
+                <canvas id="signature-pad1" class="signature-pad"></canvas>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-4 offset-md-4">
+            <button class="btn btn-block my-bg text-white" id="save">Save</button>
+        </div>
+        <input type="hidden" id="patient_img1" name="patient_img1" />
+        <input type="hidden" id="patient_img2" name="patient_img2"/>
+        <input type="hidden" id='output1' name="Signature" ><br />
+    </form>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/signature_pad.js"></script>
+<script src="~/Scripts/atrament.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var signaturePad1 = new SignaturePad(document.getElementById('signature-pad1'));
+        var sketcher1 = atrament('#mySketcher1');
+        var sketcher2 = atrament('#mySketcher2');
+
+        $("#save").click(function () {
+
+            var pname = $("#pname").val();
+            var pid = $("#pid").val();
+
+            if (pname == "" || pid == "") {
+                alert("Please fill both Patient Name and Patient ID");
+                return false;
+            }
+
+            if (sketcher1.dirty)
+                $("#patient_img1").val(sketcher1.toImage());
+            if (sketcher2.dirty)
+                $("#patient_img2").val(sketcher2.toImage());
+            var data1 = signaturePad1.toDataURL('image/png');
+            
+            $('#output1').val(data1);
+            $("#form").submit();
+
+        });
+    })
+    
+
+function Save()
+{
+    var dataURL1 = sketcher1.toImage();
+    var dataURL2 = sketcher2.toImage();
+}
+
+
+function clear()
+{
+    sketcher1.clear();
+}
+</script>
+
+

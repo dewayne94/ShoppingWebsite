@@ -1,0 +1,239 @@
+﻿@model PatientForms.Facialvein
+
+<style>
+    .img1 {
+        background-image: url('../../Images/three_men.PNG');
+        background-size: 100% auto;
+        width: 100%;
+        height: 550px;
+        background-repeat: no-repeat;
+    }
+
+    .bg-pink {
+        background-color: #f44292;
+    }
+</style>
+@{
+    ViewBag.Title = "Create";
+    ViewBag.FormName = "Treatment Log - Facial Vein (Male)";
+    ViewBag.bg = "bg-pink";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<form action="/Facialvein/Update" method="post" class="mb-5">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" name="patient_id" placeholder="Patient ID" class="form-control" value="@Model.patient_id"/>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" name="patient_name" placeholder="Patient Name" class="form-control" value="@Model.patient_name"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="img1 img-fluid">
+                @*<canvas id="img1"></canvas>*@
+                <img src="@Model.picture1"  />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered">
+            <thead class="bg-pink text-white">
+                <tr>
+                    <th>DATE</th>
+                    <th>LOCATION/TYPE</th>
+                    <th>LENGTH OF TX</th>
+                    <th>940mm DIODE</th>
+                    <th>SOLUTION/AMOUNT</th>
+                    <th>STOCKINGS</th>
+                    <th>INITIALS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @if (Model.date1 != null)
+                        {
+                            <input type="date" name="date1" class="form-control" value="@Model.date1.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            <input type="date" name="date1" class="form-control"  />
+                        }
+                    </td>
+                    <td><input type="text" name="loc1" class="form-control" value="@Model.loc1"/></td>
+                    <td><input type="text" name="length1" class="form-control" value="@Model.length1"/></td>
+                    <td><input type="text" name="diode1" class="form-control" value="@Model.diode1"/></td>
+                    <td><input type="text" name="sol1" class="form-control" value="@Model.sol1"/></td>
+                    <td><input type="text" name="stock1" class="form-control" value="@Model.stock1"/></td>
+                    <td><input type="text" name="initials1" class="form-control" value="@Model.initials1"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (Model.date2 != null)
+                        {
+                            <input type="date" name="date2" class="form-control" value="@Model.date2.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            <input type="date" name="date2" class="form-control" />
+                        }
+                    </td>
+                    <td><input type="text" name="loc2" class="form-control" value="@Model.loc2"/></td>
+                    <td><input type="text" name="length2" class="form-control" value="@Model.length2"/></td>
+                    <td><input type="text" name="diode2" class="form-control" value="@Model.diode2"/></td>
+                    <td><input type="text" name="sol2" class="form-control" value="@Model.sol2"/></td>
+                    <td><input type="text" name="stock2" class="form-control" value="@Model.stock2"/></td>
+                    <td><input type="text" name="initials2" class="form-control" value="@Model.initials2"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (Model.date3 != null)
+                        {
+                            <input type="date" name="date3" class="form-control" value="@Model.date3.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            <input type="date" name="date3" class="form-control"  />
+                        }
+                    </td>
+                    <td><input type="text" name="loc3" class="form-control" value="@Model.loc3"/></td>
+                    <td><input type="text" name="length3" class="form-control" value="@Model.length3"/></td>
+                    <td><input type="text" name="diode3" class="form-control" value="@Model.diode3"/></td>
+                    <td><input type="text" name="sol3" class="form-control" value="@Model.sol3"/></td>
+                    <td><input type="text" name="stock3" class="form-control" value="@Model.stock3"/></td>
+                    <td><input type="text" name="initials3" class="form-control" value="@Model.initials3"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (Model.date4 != null)
+                        {
+                            <input type="date" name="date4" class="form-control" value="@Model.date4.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            <input type="date" name="date4" class="form-control"  />
+                        }
+                    </td>
+                    <td><input type="text" name="loc4" class="form-control" value="@Model.loc4"/></td>
+                    <td><input type="text" name="length4" class="form-control" value="@Model.length4"/></td>
+                    <td><input type="text" name="diode4" class="form-control" value="@Model.diode4"/></td>
+                    <td><input type="text" name="sol4" class="form-control" value="@Model.sol4"/></td>
+                    <td><input type="text" name="stock4" class="form-control" value="@Model.stock4"/></td>
+                    <td><input type="text" name="initials4" class="form-control" value="@Model.initials4"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (Model.date5 != null)
+                        {
+                            <input type="date" name="date5" class="form-control" value="@Model.date5.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            <input type="date" name="date5" class="form-control"  />
+                        }
+                    </td>
+                    <td><input type="text" name="loc5" class="form-control" value="@Model.loc5"/></td>
+                    <td><input type="text" name="length5" class="form-control" value="@Model.length5"/></td>
+                    <td><input type="text" name="diode5" class="form-control" value="@Model.diode5"/></td>
+                    <td><input type="text" name="sol5" class="form-control" value="@Model.sol5"/></td>
+                    <td><input type="text" name="stock5" class="form-control" value="@Model.stock5"/></td>
+                    <td><input type="text" name="initials5" class="form-control" value="@Model.initials5"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (Model.date6 != null)
+                        {
+                            <input type="date" name="date6" class="form-control" value="@Model.date6.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            <input type="date" name="date6" class="form-control"  />
+                        }
+                    </td>
+                    <td><input type="text" name="loc6" class="form-control" value="@Model.loc6"/></td>
+                    <td><input type="text" name="length6" class="form-control" value="@Model.length6"/></td>
+                    <td><input type="text" name="diode6" class="form-control" value="@Model.diode6"/></td>
+                    <td><input type="text" name="sol6" class="form-control" value="@Model.sol6"/></td>
+                    <td><input type="text" name="stock6" class="form-control" value="@Model.stock6"/></td>
+                    <td><input type="text" name="initials6" class="form-control" value="@Model.initials6"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (Model.date7 != null)
+                        {
+                            <input type="date" name="date7" class="form-control" value="@Model.date7.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            <input type="date" name="date7" class="form-control" />
+                        }
+                    </td>
+                    <td><input type="text" name="loc7" class="form-control" value="@Model.loc7"/></td>
+                    <td><input type="text" name="length7" class="form-control" value="@Model.length7"/></td>
+                    <td><input type="text" name="diode7" class="form-control" value="@Model.diode7"/></td>
+                    <td><input type="text" name="sol7" class="form-control" value="@Model.stock7"/></td>
+                    <td><input type="text" name="stock7" class="form-control" value="@Model.stock7"/></td>
+                    <td><input type="text" name="initials7" class="form-control" value="@Model.initials7"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (Model.date8 != null)
+                        {
+                            <input type="date" name="date8" class="form-control" value="@Model.date8.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            <input type="date" name="date8" class="form-control"  />
+                        }
+                    </td>
+                    <td><input type="text" name="loc8" class="form-control" value="@Model.loc8"/></td>
+                    <td><input type="text" name="length8" class="form-control" value="@Model.length8"/></td>
+                    <td><input type="text" name="diode8" class="form-control" value="@Model.diode8"/></td>
+                    <td><input type="text" name="sol8" class="form-control" value="@Model.sol8"/></td>
+                    <td><input type="text" name="stock8" class="form-control" value="@Model.stock8"/></td>
+                    <td><input type="text" name="initials8" class="form-control" value="@Model.initials8"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row mb-3">
+        <div class="col-lg-4 col-sm-8 offset-sm-4 col-md-4  offset-lg-6">
+            <label>Signature</label>
+            <div id="signature" class="form-control">
+                <img src="@Model.provider_signature" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+            <button type="button" class="btn btn-block bg-pink text-white" id="save">Save</button>
+        </div>
+    </div>
+    <input type="hidden" id="patient_img1" name="picture1" />
+    <textarea id='output1' name="provider_signature" class="text-hide">@Model.provider_signature</textarea><br />
+</form>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/atrament.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        var sketcher1 = atrament('#img1');
+
+        $("#save").click(function () {
+
+            if (sketcher1.dirty)
+                $("#patient_img1").val(sketcher1.toImage());
+
+            $("#form").submit();
+        });
+    });
+</script>
